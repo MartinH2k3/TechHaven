@@ -1,0 +1,373 @@
+:root {
+    --main-background-color: rgba(200, 200, 200, 0.75);
+    --text-color: rgb(255, 255, 255);
+    --slightly-soft-text-color: white;
+    --soft-text-color: #ffffff;
+    --softest-text-color: #ffffff;
+    --header-height: 4rem;
+    --menu-color: #000000;
+    --side-bar-color: #000000;
+    --footer-height: 4rem;
+    --category-color: #f0f0f0;
+    --soft-border-color: #cccccc83;
+    --button-color: #494e64;
+    --button-hover-color: #fe6041;
+    --gradient-color-one: #bd5fe6;
+    --gradient-color-two: #fe6041;
+    --product-title-color: #000c3d;
+    font-size: 16px;
+    font-family: Verdana, Helvetica, Helvetica CE, Arial, Arial Regular, Arial CE, sans-serif;
+}
+
+html {
+    color: var(--text-color);
+    word-wrap: break-word;
+}
+
+/* default classes */
+body {
+    background-image: url('../images/background_image.png');
+    padding: 0;
+    margin: 0;
+}
+
+a, a:visited {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+main {
+    background-color: var(--main-background-color);
+}
+
+figure {
+    margin: 0;
+}
+
+textarea,
+select {
+    background-color: white;
+}
+input[type="radio"],input[type="checkbox"] {
+    cursor: pointer;
+}
+
+input:focus::placeholder{
+    color: transparent;
+}
+
+::placeholder, option {
+    font-family: Verdana, Helvetica, Helvetica CE, Arial, Arial Regular, Arial CE, sans-serif;
+    font-size: 13px;
+}
+
+/* Overlay for login screen and hover over category menus*/
+#overlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Cover the entire screen */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 2; /* Ensure it's above the page content but below the nav bar */
+}
+
+/* navigation bar */
+#nav-bar {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--menu-color);
+    z-index: 1000;
+}
+
+#nav-bar ul { /* applies both to categories and to search/login/cart icons */
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+#nav-bar #logo-container {
+    font-family: timeburner, sans-serif;
+    font-size: 1.2rem;
+    padding-right: 7%;
+
+}
+
+#enter-browse-page {
+    display: none;
+}
+
+/* navigation bar categories */
+#nav-bar #categories {
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+}
+
+#nav-bar .category-box {
+    display: block;
+    padding: 1.5rem 1rem;
+    text-decoration: none;
+}
+
+#nav-bar #categories li .hover-border{
+    padding: 0.5rem 0.3rem;
+}
+
+#nav-bar #categories li:hover .hover-border.fancy-text{
+    color: var(--menu-color);
+    -webkit-background-clip: unset; /* only works when the */
+    border-radius: 1.5rem;
+}
+
+/* Icon part of navigation bar */
+
+#nav-bar #nav-bar-icon-list {
+    margin-left: auto;
+}
+
+#nav-bar .nav-bar-icon {
+    padding: 1.5rem 1rem;
+    max-height: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* content off-set so the header doesn't block out the content*/
+
+#content-offset {
+    height: var(--header-height);
+}
+
+/* Switch for displaying/hiding navigation bar */
+
+#toggle-navbar:checked ~ #nav-bar-toggle-icon {
+
+}
+
+#toggle-navbar:checked ~ #content-offset {
+    height: 0;
+}
+
+#nav-bar-toggle-icon {
+    top: calc(var(--header-height) / 2 - 0.5rem);
+    left: 1rem;
+    position: fixed;
+    z-index: 1001;
+}
+
+/* search bar */
+.search-checkbox {
+    display: none; /* Hide the checkbox */
+}
+
+#search-icon {
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.search-form {
+    position: relative;
+    width: 0;
+    height: 1rem;
+    overflow: hidden;
+    transition: width 0.3s ease;
+    display: inline-block;
+}
+
+.search-field {
+    position: absolute;
+    width: 6rem;
+    border: none;
+    outline: none;
+    margin-left: 0.2rem; /* So it doesn't touch the search icon */
+    border-radius: 1.25rem;
+}
+
+.search-checkbox:checked ~ .search-form {
+    width: 7rem; /* Expand container to reveal search field */
+}
+
+/* login screen base */
+#profile-icon {
+    cursor: pointer;
+}
+
+#login_screen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* move half its width and half its height back, so it's in the center */
+    z-index: 1002;
+    display: none;
+    border: none;
+}
+
+#login-toggle:checked ~ #login_screen {
+    display: block;
+}
+
+/* category menu*/
+
+#nav-bar #categories li .category-menu {
+    display: flex;
+    gap: 1.5rem; /* Space between columns */
+    flex-wrap: wrap;
+    justify-content: space-around; /* Evenly space the flex items */
+    position: absolute;
+    top: 100%;
+    background-color: var(--menu-color);
+    padding: 1.5rem;
+    margin: 0;
+    border-radius: 0 0 1.25rem 1.25rem;
+    border-right: 0.2rem solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.2rem rgba(0, 0, 0, 0.2);
+    transform-origin: top; /* Start the scaling from the top */
+    transform: scaleY(0); /* Initially scaled to 0 */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    overflow: hidden; /* Ensures content does not overflow during transform */
+}
+
+#nav-bar #categories li:hover .category-menu {
+    transform: scaleY(1); /* Scale back to normal size */
+}
+
+.menu-column {
+    max-width: 30%;
+}
+
+.menu-column h4 {
+    color: var(--text-color);
+    margin-bottom: 1.5rem; /* Space below the column title */
+}
+
+.menu-column ul {
+    flex-direction: column;
+}
+
+.menu-column ul li{
+    margin-bottom: 1.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* footer */
+
+footer {
+    background-color: var(--menu-color); /* Light grey background */
+    min-height: var(--footer-height);
+    width: 80%;
+    margin: 0;
+    padding: 1rem 10%;
+    text-align: center; /* Center the content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+footer .footer-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+footer .footer-links li {
+    margin: 0 1rem;
+}
+
+/* Reusable */
+
+.product-title-general {
+    color: var(--product-title-color);
+    font-weight: bold;
+}
+
+.fancy-text {
+    background: linear-gradient(to bottom, var(--gradient-color-one), var(--gradient-color-two));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* media queries */
+
+@media (min-width: 1200px) { /* larger than xl */
+    main {
+        width: 75rem;
+        margin: 0 auto;
+    }
+
+    #nav-bar, footer {
+        width: 73rem;
+        padding: 0 calc((100% - 73rem) / 2);
+    }
+
+    .category-menu {
+        width: 65rem;
+        left: calc((100% - 73rem) / 2);
+    }
+
+    #nav-bar-toggle-icon {
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) { /* smaller than xl */
+    #nav-bar, footer {
+        width: 85%;
+        padding: 0 7.5%;
+    }
+
+    #nav-bar #categories {
+        display: none;
+    }
+
+    #enter-browse-page {
+        display: block;
+    }
+
+    #toggle-navbar:checked ~ #nav-bar {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 992px) { /* smaller than lg */
+
+
+}
+
+@media (max-width: 768px) { /* smaller than md */
+
+    footer {
+        flex-direction: column;
+    }
+    footer .footer-links {
+        flex-direction: column;
+    }
+    footer .footer-links li {
+        margin: 0.25rem 0;
+    }
+}
+
+@media (max-width: 576px) { /* smaller than sm */
+    #nav-bar .nav-bar-icon {
+        padding: 1.5rem 0.5rem;
+    }
+}
+
+@font-face {
+    font-family: 'timeburner';
+    src: url('fonts/TimeburnerBold-peGR.ttf');
+}

@@ -1,0 +1,64 @@
+@import url('main.css');
+/* *{outline:3px solid white}  */
+main {
+    background-color: transparent;
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    padding-top: 2rem;
+    box-sizing: border-box;
+}
+
+/* slideshow with recommended pages*/
+.slide-container {
+    position: relative;
+    margin: 2rem;
+    margin-top: 0;
+}
+
+#homepage_slide_1 {
+    display: block;
+}
+
+#homepage_slide_2{ /* displaying these will be managed by js */
+    display: none;
+}
+
+#homepage_slide_3{
+    display: none;
+}
+
+.homepage-slide-image {
+    width: 100%;
+    height: auto;
+}
+
+.slide-arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    font-size: 2rem;
+    background: linear-gradient(to bottom, var(--gradient-color-one), var(--gradient-color-two));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.left-arrow {
+    left: 0;
+}
+
+.right-arrow {
+    right: 0;
+}
+
+@media (max-width: 991px) {
+    .homepage-slide-image.large-image {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    .homepage-slide-image.small-image {
+        display: none;
+    }
+}
