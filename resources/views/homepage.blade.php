@@ -1,7 +1,5 @@
 @extends('app')
 
-@section('title', 'Homepage - TechHaven')
-
 @section('windowSpecificStylesheets')
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 @endsection

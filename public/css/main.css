@@ -26,14 +26,16 @@ html {
 
 /* default classes */
 body {
-    background-image: url('../images/background_image.png');
+    background-image: url('/storage/images/background_image.png');
     padding: 0;
     margin: 0;
 }
 
-a, a:visited {
-    color: var(--text-color);
+a {
     text-decoration: none;
+}
+a:visited, a:active, a:-webkit-any-link {
+    color: inherit;
 }
 
 main {
@@ -98,6 +100,12 @@ input:focus::placeholder{
     font-size: 1.2rem;
     padding-right: 7%;
 
+}
+
+a.fancy-text{
+    background: linear-gradient(to bottom, var(--gradient-color-one), var(--gradient-color-two));
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 #enter-browse-page {

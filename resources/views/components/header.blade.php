@@ -7,13 +7,13 @@
 
     <nav id="nav-bar">
         <div id="logo-container">
-            <a href="homepage_template.html" class="fancy-text">TechHaven</a> <!-- will be a picture, for now text logo -->
+            <a href="{{ route('homepage') }}" class="fancy-text">TechHaven</a>
         </div>
         <div id="enter-browse-page">
-            <a href="browse_page_template.html" class="fancy-text">Prezerať</a>
+            <a href="{{ route('browse') }}" class="fancy-text">Prezerať</a>
         </div>
         <ul id="categories">
-            <li class="category-box"><a href="browse_page_template.html"><span class="hover-border fancy-text">Mobily</span></a>
+            <li class="category-box"><a href="{{ route('browse') }}"><span class="hover-border fancy-text">Mobily</span></a>
                 <div class="category-menu">
                     <div class="menu-column recommend">
                         <h4>Odporúčané</h4>
