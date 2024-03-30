@@ -60,6 +60,11 @@ class BrowseController extends Controller
             $query->whereBetween('display_size', [$request->input('display_from'), $request->input('display_to')]);
         }
 
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('product_name', 'LIKE', '%' . $searchTerm . '%');
+        }
+
         // Pagination
         $products = $query->paginate(12);
         $products->appends($request->all());

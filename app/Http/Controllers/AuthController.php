@@ -27,6 +27,11 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+            // Check if the user is an admin
+            if (Auth::user()->type === 'admin') {
+                return redirect()->intended('admin-page');
+            }
+
             return back();
         }
 

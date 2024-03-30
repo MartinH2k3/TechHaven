@@ -21,7 +21,7 @@
                             <h4>Odporúčané</h4>
                             <ul>
                                 @foreach($groups['recommended'] as $product)
-                                    <li><a href="{{ route('product-page', ['product-id' => $product->id]) }}">{{ $product->product_name }}</a></li>
+                                    <li><a href="{{ route('product-page', ['product_id' => $product->id]) }}">{{ $product->product_name }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -29,7 +29,7 @@
                             <h4>Novinky</h4>
                             <ul>
                                 @foreach($groups['newest'] as $product)
-                                    <li><a href="{{ route('product-page', ['product-id' => $product->id]) }}">{{ $product->product_name }}</a></li>
+                                    <li><a href="{{ route('product-page', ['product_id' => $product->id]) }}">{{ $product->product_name }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -37,7 +37,7 @@
                             <h4>Najvýhodnejšie</h4>
                             <ul>
                                 @foreach($groups['cheapest'] as $product)
-                                    <li><a href="{{ route('product-page', ['product-id' => $product->id]) }}">{{ $product->product_name }}</a></li>
+                                    <li><a href="{{ route('product-page', ['product_id' => $product->id]) }}">{{ $product->product_name }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -50,11 +50,12 @@
             <li class="nav-bar-icon">
                 <label for="search-toggle" id="search-icon"><i class="fas fa-search fancy-text"></i></label>
                 <input type="checkbox" id="search-toggle" class="search-checkbox" />
-                <form class="search-form">
+                <form class="search-form" action="{{ route('browse') }}" method="GET">
                     <label>
-                        <input type="text" class="search-field" placeholder="Search..." />
+                        <input type="text" class="search-field" name="search" placeholder="Search..." />
                     </label>
                 </form>
+
             </li>
             <li class="nav-bar-icon"><a href="shopping_cart_template.html"><i class="fas fa-shopping-cart fancy-text"></i></a></li>
             <li class="nav-bar-icon"><label for="login-toggle" id="profile-icon"><i class="fas fa-user fancy-text"></i></label></li>

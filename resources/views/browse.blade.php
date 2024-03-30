@@ -3,7 +3,7 @@
 @section('title', 'Browse TechHaven')
 
 @section('windowSpecificStylesheets')
-    <link rel="stylesheet" href="{{ asset('css/browse_page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/browse-page.css') }}">
 @endsection
 
 @section('content')

@@ -270,6 +270,11 @@ a.text-button {
 a.text-button:hover {
     text-decoration: underline;
 }
+
+.login-note {
+    font-size: 0.7rem;
+}
+
 /* category menu*/
 
 #nav-bar #categories li .category-menu {

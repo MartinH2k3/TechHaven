@@ -1,0 +1,74 @@
+@import url('main.css');
+
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* min-height: 100vh; */
+}
+
+main {
+    display: flex;
+    justify-content:center;
+    background-color: transparent;
+    width: 100%;
+}
+
+header {
+    width:100%;
+}
+
+.logout-admin-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.6rem;
+}
+
+.logout-admin {
+    padding: 0.6rem 1.6rem;
+    border: none;
+    background-color: var(--menu-color);
+    color: var(--text-color);
+    font-weight: bold;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.logout-admin:hover {
+    background-color: var(--button-hover-color);
+    color: white;
+}
+
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: fit-content;
+    height: fit-content; 
+    border: 1px solid var(--soft-border-color);
+    border-radius: 0.3rem;
+    padding: 1.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.2);
+    background-color: var(--menu-color);
+    margin: 4rem auto;
+}
+#product_image{
+    font: inherit;
+    
+}
+.admin-container button {
+    padding: 0.6rem;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: var(--button-color);
+    color: white;
+    cursor: pointer;
+    width: 12.5rem;
+}
+
+.admin-container button:hover {
+    background-color: var(--button-hover-color);
+}

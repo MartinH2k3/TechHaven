@@ -1,0 +1,97 @@
+@import url('main.css');
+@import url('admin.css');
+
+
+header {
+    width:100%;
+}
+
+.change-remove-product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    gap: 1rem;
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid var(--soft-border-color);
+    border-radius: 0.3rem;
+    padding: 1.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.2);
+    background-color: var(--menu-color);
+}
+.change-remove-product-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Stretch items to fill the container */
+    gap: 0.7rem;
+    padding: 1rem;
+}
+.form-group,
+.filter-group,
+.search_results {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.form-group label,
+.filter-group label {
+    width: 100%;
+}
+.change-remove-product-form input,
+.change-remove-product-form select,
+.change-remove-product-form textarea {
+    flex: 1 1 auto;
+    padding: 0.7rem;
+    margin: 0.3rem 0;
+    border: 1px solid var(--soft-border-color);
+    border-radius: 0.3rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+.change-remove-product-form textarea {
+    resize: vertical;
+}
+
+.change-remove-product-form h1{
+    text-align: center;
+}
+.change-remove-product-container button {
+    padding: 0.6rem;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: var(--button-color);
+    color: white;
+    cursor: pointer;
+    width: 12.5rem;
+    margin: auto;
+}
+
+.change-remove-product-container button:hover {
+    background-color: var(--button-hover-color);
+}
+#remove-product-button {
+    background-color: rgba(255, 0, 0, 0.709);
+}
+
+@media (max-width: 576px) {
+    .main{
+        flex: 1;
+    }
+    .change-remove-product-container {
+        margin: 2rem 2rem;
+    }
+    .form-group,
+    .filter-group {
+        flex-direction: column;
+    }
+    .form-group label,
+    .filter-group label,
+    .add-product-form input,
+    .add-product-form select,
+    .add-product-form textarea{
+        width: 100%;
+    }
+
+}

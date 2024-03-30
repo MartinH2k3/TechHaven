@@ -16,7 +16,7 @@ class User extends Authenticatable
     protected $keyType = 'string';
 
     protected $casts = [
-        'id' => 'string', // This ensures Laravel treats the ID as a string, suitable for UUIDs.
+        'id' => 'string',
     ];
     /**
      * The attributes that are mass assignable.
