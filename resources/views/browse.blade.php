@@ -40,10 +40,10 @@
                 <label>
                     <select name="category" class="filter filter-dropdown">
                         <option value="">Vyber Kategóriu</option>
-                        <option value="phones">Mobily</option>
-                        <option value="tablets">Tablety</option>
-                        <option value="laptops">Notebooky</option>
-                        <option value="game-consoles">Herné konzoly</option>
+                        <option value="Mobily">Mobily</option>
+                        <option value="Tablety">Tablety</option>
+                        <option value="Notebooky">Notebooky</option>
+                        <option value="Herné konzoly">Herné konzoly</option>
                     </select>
                 </label>
             </div>
@@ -65,27 +65,27 @@
                 <label class="filter-label">Operačný systém</label>
                 <div class="filter filter-checkbox">
                     <div class="os-checkbox-div">
-                        <input type="checkbox" id="osWindows" name="os[]" value="windows">
+                        <input type="checkbox" id="osWindows" name="os[]" value="Windows">
                         <label for="osWindows">Windows</label>
                     </div>
                     <div class="os-checkbox-div">
-                        <input type="checkbox" id="osMac" name="os[]" value="mac">
+                        <input type="checkbox" id="osMac" name="os[]" value="Mac">
                         <label for="osMac">Mac</label>
                     </div>
                     <div class="os-checkbox-div">
-                        <input type="checkbox" id="osLinux" name="os[]" value="linux">
+                        <input type="checkbox" id="osLinux" name="os[]" value="Linux">
                         <label for="osLinux">Linux</label>
                     </div>
                     <div class="os-checkbox-div">
-                        <input type="checkbox" id="osAndroid" name="os[]" value="android">
+                        <input type="checkbox" id="osAndroid" name="os[]" value="Android">
                         <label for="osAndroid">Android</label>
                     </div>
                     <div class="os-checkbox-div">
-                        <input type="checkbox" id="osIOS" name="os[]" value="ios">
+                        <input type="checkbox" id="osIOS" name="os[]" value="iOS">
                         <label for="osIOS">iOS</label>
                     </div>
                     <div class="os-checkbox-div">
-                        <input type="checkbox" id="osOther" name="os[]" value="other">
+                        <input type="checkbox" id="osOther" name="os[]" value="Iné">
                         <label for="osOther">Iné</label>
                     </div>
                 </div>

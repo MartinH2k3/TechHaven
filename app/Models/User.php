@@ -11,6 +11,13 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+//    For working with UUIDs
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    protected $casts = [
+        'id' => 'string', // This ensures Laravel treats the ID as a string, suitable for UUIDs.
+    ];
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +29,7 @@ class User extends Authenticatable
         'password',
     ];
 
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -31,6 +39,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
 
     /**
      * Get the attributes that should be cast.

@@ -9,10 +9,10 @@ return new class extends Migration {
     {
         Schema::create('shopping_cart_products', function (Blueprint $table) {
             $table->uuid('shopping_cart_id');
+            $table->uuid('user_id');
             $table->uuid('product_id');
             $table->integer('product_count');
-
-            $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });

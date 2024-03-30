@@ -7,8 +7,8 @@ use App\Models\Product;
 
 class ProductSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        Product::factory()->count(100)->create();
+        Product::factory()->count(200)->create();
     }
 }
