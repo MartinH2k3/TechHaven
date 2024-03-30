@@ -9,15 +9,15 @@
 @section('content')
     <aside class="sidebar">
         <form id="filter-form" action="{{ route('browse') }}" method="GET">
-        <div class="filter-group">
+            <div class="filter-group">
                 <label class="filter-label">Zoradiť podľa</label>
                 <label>
                     <select name="sort" class="filter filter-dropdown">
                         <option value="">Vyber Možnosť</option>
-                        <option value="price-asc">Najlacnejšie</option>
-                        <option value="price-desc">Najdrahšie</option>
-                        <option value="date-asc">Najstaršie</option>
-                        <option value="date-desc">Najnovšie</option>
+                        <option value="price-asc" {{ request('sort') == 'price-asc' ? 'selected' : '' }}>Najlacnejšie</option>
+                        <option value="price-desc" {{ request('sort') == 'price-desc' ? 'selected' : '' }}>Najdrahšie</option>
+                        <option value="date-asc" {{ request('sort') == 'date-asc' ? 'selected' : '' }}>Najstaršie</option>
+                        <option value="date-desc" {{ request('sort') == 'date-desc' ? 'selected' : '' }}>Najnovšie</option>
                     </select>
                 </label>
             </div>
@@ -26,10 +26,10 @@
                 <label class="filter-label">Cena</label>
                 <div class="filter filter-range">
                     <label>
-                        <input name="price_from" type="number" placeholder="From" value="0" min="0" max="20000">
+                        <input name="price_from" type="number" placeholder="From" value="{{ request('price_from', '0') }}" min="0" max="20000">
                     </label> -
                     <label>
-                        <input name="price_to" type="number" placeholder="To" value="20000" min="0" max="20000">
+                        <input name="price_to" type="number" placeholder="To" value="{{ request('price_to', '20000') }}" min="0" max="20000">
                     </label>
                 </div>
             </div>
@@ -40,10 +40,10 @@
                 <label>
                     <select name="category" class="filter filter-dropdown">
                         <option value="">Vyber Kategóriu</option>
-                        <option value="Mobily">Mobily</option>
-                        <option value="Tablety">Tablety</option>
-                        <option value="Notebooky">Notebooky</option>
-                        <option value="Herné konzoly">Herné konzoly</option>
+                        <option value="Mobily" {{ request('category') == 'Mobily' ? 'selected' : '' }}>Mobily</option>
+                        <option value="Tablety" {{ request('category') == 'Tablety' ? 'selected' : '' }}>Tablety</option>
+                        <option value="Notebooky" {{ request('category') == 'Notebooky' ? 'selected' : '' }}>Notebooky</option>
+                        <option value="Herné konzoly" {{ request('category') == 'Herné konzoly' ? 'selected' : '' }}>Herné konzoly</option>
                     </select>
                 </label>
             </div>
@@ -52,42 +52,25 @@
                 <label class="filter-label">RAM (GB)</label>
                 <div class="filter filter-range">
                     <label>
-                        <input type="number" name="ram_from" placeholder="From" value="1" min="1" max="64">
+                        <input type="number" name="ram_from" placeholder="From" value="{{ request('ram_from', '1') }}" min="1" max="64">
                     </label> -
                     <label>
-                        <input type="number" name="ram_to" placeholder="To" value="64" min="1" max="64">
+                        <input type="number" name="ram_to" placeholder="To" value="{{ request('ram_to', '64') }}" min="1" max="64">
                     </label>
                 </div>
             </div>
 
             <!-- Options for OS -->
+            <!-- For checkboxes, you need to check if the value is in the array returned by request('os') -->
             <div class="filter-group">
                 <label class="filter-label">Operačný systém</label>
                 <div class="filter filter-checkbox">
+                    <!-- Repeat for each OS option, checking if it's in the array -->
                     <div class="os-checkbox-div">
-                        <input type="checkbox" id="osWindows" name="os[]" value="Windows">
+                        <input type="checkbox" id="osWindows" name="os[]" value="Windows" {{ is_array(request('os')) && in_array('Windows', request('os')) ? 'checked' : '' }}>
                         <label for="osWindows">Windows</label>
                     </div>
-                    <div class="os-checkbox-div">
-                        <input type="checkbox" id="osMac" name="os[]" value="Mac">
-                        <label for="osMac">Mac</label>
-                    </div>
-                    <div class="os-checkbox-div">
-                        <input type="checkbox" id="osLinux" name="os[]" value="Linux">
-                        <label for="osLinux">Linux</label>
-                    </div>
-                    <div class="os-checkbox-div">
-                        <input type="checkbox" id="osAndroid" name="os[]" value="Android">
-                        <label for="osAndroid">Android</label>
-                    </div>
-                    <div class="os-checkbox-div">
-                        <input type="checkbox" id="osIOS" name="os[]" value="iOS">
-                        <label for="osIOS">iOS</label>
-                    </div>
-                    <div class="os-checkbox-div">
-                        <input type="checkbox" id="osOther" name="os[]" value="Iné">
-                        <label for="osOther">Iné</label>
-                    </div>
+                    <!-- Repeat for other OS options -->
                 </div>
             </div>
 
@@ -95,23 +78,24 @@
                 <label class="filter-label">Veľkosť displeja (in)</label>
                 <div class="filter filter-range">
                     <label>
-                        <input type="number" name="display_from" placeholder="From" value="1" min="1" max="100">
+                        <input type="number" name="display_from" placeholder="From" value="{{ request('display_from', '1') }}" min="1" max="100">
                     </label> -
                     <label>
-                        <input type="number" name="display_to" placeholder="To" value="100" min="1" max="100">
+                        <input type="number" name="display_to" placeholder="To" value="{{ request('display_to', '100') }}" min="1" max="100">
                     </label>
                 </div>
             </div>
 
             <button type="submit" class="filter-button">Filtrovať</button>
         </form>
+
     </aside>
     <div class="browse-page-container">
         <section id="product-grid">
             @foreach ($products as $product)
                 <figure class="grid-item">
                     <a href="{{ url('/product', $product->id) }}" class="anchor-for-product-preview-image">
-                        <img src="{{ asset('storage/images/product-images/' . $product->image_id_long . '.png') }}" alt="Product image" class="product-preview-image">
+                        <img src="{{ $product->images->count() > 0 ? asset('storage/images/product-images/'.$product->images->first()->path) : asset('storage/images/product-images/BobTheExample.png') }}" alt="Product image" class="product-preview-image">
                     </a>
                     <span class="product-preview-title product-title-general">{{ $product->product_name }}</span>
                     <p class="product-preview-description">{{ $product->product_description }}</p>

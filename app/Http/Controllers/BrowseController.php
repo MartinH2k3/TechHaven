@@ -6,14 +6,28 @@ use App\Models\Product;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class BrowseController extends Controller
 {
-    public function index(Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function index(Request $request): View|Application|Factory|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         // Start the query builder
         $query = Product::query();
+
+        // Apply search filter. Has to be first to redirect in case
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = $request->input('search');
+            $query->where('product_name', 'LIKE', '%' . $searchTerm . '%');
+
+            // If there's exactly one product matching the search term, redirect to its detail page
+            if ($query->count() == 1) {
+                $product = $query->first();
+                return Redirect::route('product-page', ['product_id' => $product->id]);
+            }
+        }
 
         // Apply sort filter
         if ($request->has('sort')) {
@@ -58,11 +72,6 @@ class BrowseController extends Controller
         // Apply display size filter
         if ($request->filled(['display_from', 'display_to'])) {
             $query->whereBetween('display_size', [$request->input('display_from'), $request->input('display_to')]);
-        }
-
-        if ($request->filled('search')) {
-            $searchTerm = $request->input('search');
-            $query->where('product_name', 'LIKE', '%' . $searchTerm . '%');
         }
 
         // Pagination

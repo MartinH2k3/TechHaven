@@ -36,3 +36,6 @@ Route::get('/admin-add', function () {
 Route::get('/admin-manage', function () {
     return view('admin-manage');
 })->name('admin-manage');
+
+Route::get('/product/{product_id}', [ProductController::class, 'show'])->name('product-page');
+

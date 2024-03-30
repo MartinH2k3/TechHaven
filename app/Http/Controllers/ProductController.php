@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Image;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -26,5 +29,12 @@ class ProductController extends Controller
         $product->images()->create(['filename' => $hashedName]);
 
         // Redirect or return response...
+    }
+
+    public function show($id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        $product = Product::with('images')->findOrFail($id);
+
+        return view('product-page', compact('product'));
     }
 }

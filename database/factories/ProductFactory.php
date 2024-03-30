@@ -20,7 +20,6 @@ class ProductFactory extends Factory
     {
         return [
             'id' => Str::uuid(), // Generates a UUID for the product ID
-            'image_id_long' => "BobTheExample", // image ID
             'product_name' => fake()->words(5, true), // Generates a random product name
             'product_description' => fake()->sentence(20), // Generates a random sentence as product description
             'operating_system' => fake()->randomElement(['Android', 'iOS', 'Linux', 'Windows', 'Mac', 'Iné']), // Randomly chooses an OS

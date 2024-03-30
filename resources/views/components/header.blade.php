@@ -52,7 +52,7 @@
                 <input type="checkbox" id="search-toggle" class="search-checkbox" />
                 <form class="search-form" action="{{ route('browse') }}" method="GET">
                     <label>
-                        <input type="text" class="search-field" name="search" placeholder="Search..." />
+                        <input type="text" class="search-field" name="search" placeholder="Search..." value="{{ request('search') }}"/>
                     </label>
                 </form>
 
