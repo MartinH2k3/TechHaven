@@ -7,6 +7,7 @@ use App\Models\Image;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -15,21 +16,53 @@ class ProductController extends Controller
 {
     // Other methods...
 
-    public function uploadProductImage(Request $request): void
+    public function store(Request $request): RedirectResponse
     {
-        $request->validate(['image' => 'required|image']);
+        $request->validate([
+            'product_name' => 'required|max:62',
+            'product_description' => 'required',
+            'operating_system' => 'required|max:40',
+            'category' => 'required|max:40',
+            'ram' => 'required|integer|min:0|max:999',
+            'display_size' => 'required|numeric|min:0|max:999.9',
+            'price' => 'required|numeric|min:0|max:9999.99',
+            'product_image' => 'required|array',
+            'product_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+        ]);
 
-        $image = $request->file('image');
-        $hashedName = Str::random(40) . '.' . $image->getClientOriginalExtension();
+        $product = new Product([
+            'id' => Str::uuid(),
+            'product_name' => $request->product_name,
+            'product_description' => $request->product_description,
+            'operating_system' => $request->operating_system,
+            'category' => $request->category,
+            'ram' => $request->ram,
+            'display_size' => $request->display_size,
+            'price' => $request->price,
+        ]);
 
-        // Move the file to the 'storage/app/public/product-images' directory and create a symlink for public access
-        $image->storeAs('public/product-images', $hashedName);
+        $product->save();
 
-        $product = Product::findOrFail($request->product_id); // Use findOrFail to handle cases where the product doesn't exist
-        $product->images()->create(['filename' => $hashedName]);
+        if ($request->hasfile('product_image')) {
+            foreach ($request->file('product_image') as $image) {
+                // Generate a random filename with the correct extension
+                $filename = Str::random(40) . '.' . $image->extension();
 
-        // Redirect or return response...
+                // Store the image in the public disk under 'product_images' directory
+                $path = $image->storeAs('images/product-images', $filename, 'public');
+
+                $imageModel = new Image([
+                    'product_id' => $product->id,
+                    'filename' => $filename,
+                ]);
+
+                $imageModel->save();
+            }
+        }
+
+        return redirect()->route('admin-page')->with('success', 'Product added successfully.');
     }
+
 
     public function show($id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {

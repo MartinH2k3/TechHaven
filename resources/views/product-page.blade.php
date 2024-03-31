@@ -10,16 +10,14 @@
 <div id="product-container">
     <div id="product-image-grid">
         <div id="product-image-div">
-            <img src="{{ $product->images->count() > 0 ? asset('storage/images/product-images/'.$product->images->first()->path) : asset('storage/images/product-images/BobTheExample.png') }}" class="product-image" id="main-product-image" alt="Main Product Image">
+            <img src="{{ $product->images->count() > 0 ? asset('storage/images/product-images/'.$product->images->first()->filename) : asset('storage/images/product-images/BobTheExample.png') }}" class="product-image" id="main-product-image" alt="Main Product Image">
         </div>
 
-        <div id="product-image-thumbnails">
-            @foreach ($product->images->take(4) as $image)
-            <label class="product-image-thumbnail" onclick="changeMainImage('{{ asset('storage/images/product-images/'.$image->path) }}')">
-                <img src="{{ asset('storage/images/product-images/'.$image->filename) }}" class="product-image" alt="product thumbnail">
-            </label>
-            @endforeach
-        </div>
+        @foreach ($product->images->take(4) as $image)
+        <label class="product-image-thumbnail" onclick="changeMainImage('{{ asset('storage/images/product-images/'.$image->path) }}')">
+            <img src="{{ asset('storage/images/product-images/'.$image->filename) }}" class="product-image" alt="product thumbnail">
+        </label>
+        @endforeach
     </div>
     <div id="product-info">
         <h3 class="product-title product-title-general">{{ $product->product_name }}</h3>

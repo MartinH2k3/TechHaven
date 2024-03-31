@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrowseController;
 
 // Authentication Routes
-Route::get('login', [AuthController::class, 'loginView'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::get('register', [AuthController::class, 'registerView'])->name('register');
 Route::post('register', [AuthController::class, 'register'])->name('register');
@@ -32,6 +31,8 @@ Route::get('/admin-page', function () {
 Route::get('/admin-add', function () {
     return view('admin-add');
 })->name('admin-add');
+
+Route::post('/admin-add', [ProductController::class, 'store'])->name('admin-add');
 
 Route::get('/admin-manage', function () {
     return view('admin-manage');

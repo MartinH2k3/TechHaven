@@ -13,12 +13,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // Show login form
-    public function loginView(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
-    {
-        return view('auth.login');
-    }
-
     // Handle login
     public function login(Request $request): RedirectResponse
     {
@@ -79,7 +73,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return back();
+        return redirect()->intended();
     }
 }
 
