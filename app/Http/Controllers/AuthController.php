@@ -43,23 +43,32 @@ class AuthController extends Controller
     // Show registration form
     public function registerView(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('auth.register');
+        return view('register');
     }
 
     // Handle registration
     public function register(Request $request): RedirectResponse
     {
         // Validate the request...
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'gender' => 'required|string',
+        ]);
 
         $user = User::create([
-            'name' => $request->name, // Make sure to include a name field in your form
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'gender' => $request->gender,
         ]);
 
         Auth::login($user);
 
-        return redirect()->intended('dashboard'); // Redirect to a dashboard route after registration
+        return redirect()->intended();
     }
 
     // Handle logout
@@ -70,7 +79,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return back();
     }
 }
 

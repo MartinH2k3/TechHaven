@@ -4,7 +4,7 @@
         <button type="submit" class="login-button">Odhlásiť sa</button>
     </form>
 @else
-<form class="login-form" action="{{ route('login') }}" method="post">
+<form class="login-form" action="{{ route('login') }}" method="POST">
     @csrf
     <h1>Prihlásenie</h1>
     <label for="email">Email:</label>
