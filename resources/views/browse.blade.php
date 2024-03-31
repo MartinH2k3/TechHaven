@@ -39,7 +39,7 @@
                 <label class="filter-label">Kategória</label>
                 <label>
                     <select name="category" class="filter filter-dropdown">
-                        <option value="">Vyber Kategóriu</option>
+                        <option value="">Všetky</option>
                         <option value="Mobily" {{ request('category') == 'Mobily' ? 'selected' : '' }}>Mobily</option>
                         <option value="Tablety" {{ request('category') == 'Tablety' ? 'selected' : '' }}>Tablety</option>
                         <option value="Notebooky" {{ request('category') == 'Notebooky' ? 'selected' : '' }}>Notebooky</option>
@@ -99,7 +99,7 @@
                         <input type="number" name="display_from" placeholder="From" value="{{ request('display_from', '0') }}" min="0" max="1000">
                     </label> -
                     <label>
-                        <input type="number" name="display_to" placeholder="To" value="{{ request('display_to', '999.9') }}" min="0" max="1000">
+                        <input type="number" name="display_to" placeholder="To" value="{{ request('display_to', '1000') }}" min="0" max="1000">
                     </label>
                 </div>
             </div>

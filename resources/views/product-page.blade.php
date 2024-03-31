@@ -14,7 +14,7 @@
         </div>
 
         @foreach ($product->images->take(4) as $image)
-        <label class="product-image-thumbnail" onclick="changeMainImage('{{ asset('storage/images/product-images/'.$image->path) }}')">
+        <label class="product-image-thumbnail" onclick="changeMainImage('{{ asset('storage/images/product-images/'.$image->filename) }}')">
             <img src="{{ asset('storage/images/product-images/'.$image->filename) }}" class="product-image" alt="product thumbnail">
         </label>
         @endforeach

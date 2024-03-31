@@ -27,7 +27,7 @@ class ProductController extends Controller
             'display_size' => 'required|numeric|min:0|max:999.9',
             'price' => 'required|numeric|min:0|max:9999.99',
             'product_image' => 'required|array',
-            'product_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'product_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:8192',
         ]);
 
         $product = new Product([
