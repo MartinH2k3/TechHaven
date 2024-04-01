@@ -66,14 +66,14 @@ class AuthController extends Controller
     }
 
     // Handle logout
-    public function logout(Request $request): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->intended();
+        return back();
     }
 }
 

@@ -119,11 +119,11 @@
                     <span class="product-preview-title product-title-general">{{ $product->product_name }}</span>
                     <p class="product-preview-description">{{ $product->product_description }}</p>
                     <span class="product-preview-price">{{ $product->price }} €</span>
-                    <form action="{{ route('cart.add') }}" method="post" class="add-to-cart-form">
+                    <form action="{{ route('cart.add') }}" method="post" class="add-to-cart-button-form">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="product_count" value="1">
-                        <button type="submit" class="product-preview-add-to-cart" style="background: none; border: none;">
+                        <button type="submit" class="add-to-cart-button">
                             <i class="fas fa-shopping-cart"></i>
                         </button>
                     </form>

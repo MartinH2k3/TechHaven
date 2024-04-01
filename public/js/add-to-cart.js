@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.add-to-cart-form').on('submit', function(e) {
+    $('.add-to-cart-button-form').on('submit', function(e) {
         e.preventDefault(); // Prevent the default form submission
         var formData = $(this).serialize(); // Serialize form data
 

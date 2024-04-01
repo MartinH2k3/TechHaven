@@ -116,7 +116,7 @@ main {
     justify-content: center;
 }
 
-.product-preview-price, .product-preview-add-to-cart {
+.product-preview-price, .add-to-cart-button {
     color: var(--product-title-color);
     font-weight: bold;
 }
@@ -141,14 +141,19 @@ main {
     grid-column: 1;
 }
 
-.product-preview-add-to-cart {
-    text-align: right;
+.add-to-cart-button-form {
+    width: fit-content;
+    justify-self: flex-end;
+}
+.add-to-cart-button {
     margin: auto 0.5rem;
     grid-row: 4;
     grid-column: 2;
+    background: none;
+    border: none;
 }
 
-.product-preview-add-to-cart i{
+.add-to-cart-button i{
     display: contents;
     cursor: pointer;
 }
