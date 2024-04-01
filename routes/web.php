@@ -31,15 +31,18 @@ Route::get('/admin-page', function () {
 
 Route::get('/admin-add', function () {
     return view('admin-add');
-})->name('admin-add');
+})->name('admin.add');
 
-Route::post('/admin-add', [ProductController::class, 'store'])->name('admin-add');
+Route::post('/admin-add', [ProductController::class, 'store'])->name('admin.add');
 
 Route::get('/admin-manage', function () {
     return view('admin-manage');
-})->name('admin-manage');
+})->name('admin.manage');
 
 Route::get('/product/{product_id}', [ProductController::class, 'show'])->name('product-page');
 
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+
 

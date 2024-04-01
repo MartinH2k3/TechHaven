@@ -11,7 +11,7 @@
 <body>
 
 <header>
-    @include('components.header')
+    <x-header />
 </header>
 
 <main>

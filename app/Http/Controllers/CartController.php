@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -46,5 +47,33 @@ class CartController extends Controller
 
             Session::put('shopping_cart', $cart);
         }
+    }
+
+    public function showCart()
+    {
+        $cartItems = collect();
+
+        if (Auth::check()) {
+            // Fetch cart items from database for the logged-in user
+            $userId = Auth::id();
+            $cartItems = ShoppingCartProduct::with('product')
+                ->where('user_id', $userId)
+                ->get();
+        } else {
+            // Fetch cart items from session for guests
+            $cart = Session::get('shopping_cart', []);
+            foreach ($cart as $item) {
+                $product = Product::find($item['product_id']);
+                if ($product) {
+                    $cartItems->push((object)[
+                        'product' => $product,
+                        'product_count' => $item['product_count'],
+                        'product_id' => $item['product_id']
+                    ]);
+                }
+            }
+        }
+
+        return view('cart', compact('cartItems'));
     }
 }

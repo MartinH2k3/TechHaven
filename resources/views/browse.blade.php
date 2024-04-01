@@ -4,7 +4,6 @@
 
 @section('windowSpecificStylesheets')
     <link rel="stylesheet" href="{{ asset('css/browse-page.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @endsection
 
 @section('content')
@@ -137,5 +136,6 @@
 @endsection
 
 @section('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('js/add-to-cart.js') }}"></script>
 @endsection

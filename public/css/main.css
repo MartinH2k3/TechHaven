@@ -157,7 +157,7 @@ a.fancy-text{
 /* Switch for displaying/hiding navigation bar */
 
 #toggle-navbar:checked ~ #nav-bar-toggle-icon {
-
+    transform: rotate(180deg);
 }
 
 #toggle-navbar:checked ~ #content-offset {
@@ -427,7 +427,25 @@ footer .footer-links li {
     }
 }
 
+@media (max-width: 420px) { /* Almost exclusively for foldable phones*/
+    #nav-bar {
+        position: unset;
+    }
+
+    #nav-bar-toggle-icon {
+        display: none;
+    }
+
+    #toggle-navbar:checked ~ #nav-bar {
+        display: unset;
+    }
+
+    #content-offset {
+        height: 0;
+    }
+}
+
 @font-face {
     font-family: 'timeburner';
-    src: url('fonts/TimeburnerBold-peGR.ttf');
+    src: url('../fonts/TimeburnerBold-peGR.ttf');
 }

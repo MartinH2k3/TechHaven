@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin-add.css') }}">
 @endsection
 @section('content')
-    <form class="add-product-form" action="{{ route('admin-add') }}" method="POST" enctype="multipart/form-data">
+    <form class="add-product-form" action="{{ route('admin.add') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <h1>Pridať produkt</h1>
 
