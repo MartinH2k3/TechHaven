@@ -4,6 +4,7 @@
 
 @section('windowSpecificStylesheets')
     <link rel="stylesheet" href="{{ asset('css/browse-page.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @endsection
 
 @section('content')
@@ -118,7 +119,14 @@
                     <span class="product-preview-title product-title-general">{{ $product->product_name }}</span>
                     <p class="product-preview-description">{{ $product->product_description }}</p>
                     <span class="product-preview-price">{{ $product->price }} €</span>
-                    <span class="product-preview-add-to-cart"><i class="fas fa-shopping-cart"></i></span>
+                    <form action="{{ route('cart.add') }}" method="post" class="add-to-cart-form">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="product_count" value="1">
+                        <button type="submit" class="product-preview-add-to-cart" style="background: none; border: none;">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                    </form>
                 </figure>
             @endforeach
         </section>
@@ -126,4 +134,8 @@
         {{ $products->onEachSide(1)->links('vendor.pagination.css-slider') }}
 
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/add-to-cart.js') }}"></script>
 @endsection

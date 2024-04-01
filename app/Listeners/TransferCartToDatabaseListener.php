@@ -14,7 +14,7 @@ class TransferCartToDatabaseListener
         $cart = Session::get('shopping_cart', []);
 
         foreach ($cart as $item) {
-            ShoppingCartProduct::updateOrCreate(
+            $cartItem = ShoppingCartProduct::updateOrCreate(
                 [
                     'user_id' => $userId,
                     'product_id' => $item['product_id'],

@@ -8,6 +8,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('shopping_cart_products', function (Blueprint $table) {
+            $table->id();
             $table->uuid('user_id');
             $table->uuid('product_id');
             $table->integer('product_count');
