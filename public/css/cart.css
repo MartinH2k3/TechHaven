@@ -123,3 +123,8 @@ button#switch-to-next-stage:hover {
     }
 }
 
+@media (max-width: 430px) {
+    .stage1-row {
+        grid-template-columns: 4fr 1fr 2fr;
+    }
+}

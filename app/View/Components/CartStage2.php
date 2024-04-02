@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class cart-stage2 extends Component
+class CartStage2 extends Component
 {
     /**
      * Create a new component instance.
