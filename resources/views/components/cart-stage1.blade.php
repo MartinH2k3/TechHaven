@@ -31,6 +31,7 @@
     @endforeach
 
     <div class="stage1-row shopping-cart-sum">
-        <span class="stage1-total">Celková cena: {{ $totalPrice }} €</span>
+        <h5 class="stage1-title">Celková cena: </h5>
+        <span class="stage1-total">{{ $totalPrice }} €</span>
     </div>
 </div>

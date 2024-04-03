@@ -8,7 +8,7 @@
     @csrf
     <h1>Prihlásenie</h1>
     <label for="email">Email:</label>
-    <input type="text" id="email" name="email" placeholder="Email" required>
+    <input type="email" id="email" name="email" placeholder="Email" required>
     <label for="password">Heslo:</label>
     <input type="password" id="password" name="password" placeholder="Heslo" required>
 
