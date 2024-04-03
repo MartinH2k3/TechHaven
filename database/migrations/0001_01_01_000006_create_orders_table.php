@@ -13,8 +13,11 @@ return new class extends Migration {
             $table->enum('status', ['pending', 'paid', 'complete', 'canceled']);
             $table->integer('total_price');
             $table->enum('delivery_method', ['SPS', 'DPD']);
-            $table->text('delivery_information'); // Consider a JSON column or a related table
+            $table->uuid('delivery_information_id'); // Consider a JSON column or a related table
             $table->timestamps();
+
+            $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreign('delivery_information_id')->references('id')->on('delivery_information');
         });
     }
 

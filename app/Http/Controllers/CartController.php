@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +52,7 @@ class CartController extends Controller
         }
     }
 
-    public function showCart()
+    public function showCart(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $cartItems = collect();
 
