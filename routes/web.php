@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrowseController;
 
@@ -13,31 +14,27 @@ Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::get('/', function () {
-    return view('homepage');
+    return view('customer.homepage');
 })->name('homepage');;
 
 
 Route::get('/browse', [BrowseController::class, 'index'])->name('browse');
 
-Route::get('/product/{product_id}', function () {
-    return view('homepage');
-})->name('product-page');
-
 Route::post('/product/{product_id}/upload-image', [ProductController::class, 'uploadProductImage'])->name('product.upload-image');
 
 Route::get('/admin-page', function () {
-    return view('admin-page');
-})->name('admin-page');
+    return view('admin.main');
+})->middleware(AdminMiddleware::class)->name('admin-page');
 
 Route::get('/admin-add', function () {
-    return view('admin-add');
-})->name('admin.add');
+    return view('admin.add');
+})->middleware(AdminMiddleware::class)->name('admin.add');
 
-Route::post('/admin-add', [ProductController::class, 'store'])->name('admin.add');
+Route::post('/admin-add', [ProductController::class, 'store'])->middleware(AdminMiddleware::class)->name('admin.add');
 
 Route::get('/admin-manage', function () {
-    return view('admin-manage');
-})->name('admin.manage');
+    return view('admin.manage');
+})->middleware(AdminMiddleware::class)->name('admin.manage');
 
 Route::get('/product/{product_id}', [ProductController::class, 'show'])->name('product-page');
 

@@ -78,7 +78,7 @@ class BrowseController extends Controller
         $products = $query->paginate(12);
         $products->appends($request->all());
 
-        return view('browse', compact('products'));
+        return view('customer.browse', compact('products'));
     }
 }
 

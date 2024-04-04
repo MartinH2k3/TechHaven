@@ -1,4 +1,4 @@
-@extends('admin-layout')
+@extends('layouts.admin')
 @section('title', 'Vytvoriť produkt')
 @section('windowSpecificStylesheets')
     <link rel="stylesheet" href="{{ asset('css/admin-add.css') }}">
@@ -32,7 +32,8 @@
 
         <div class="filter-group">
             <label for="select-product_operating_system" class="filter-label">Operačný systém:</label>
-            <select id="select-product_operating_system" name="operating_system" class="filter filter-dropdown" required>
+            <select id="select-product_operating_system" name="operating_system" class="filter filter-dropdown"
+                    required>
                 <option value="">Vyber operačný systém</option>
                 <option value="Windows">Windows</option>
                 <option value="Mac">Mac</option>
@@ -45,12 +46,14 @@
 
         <div class="form-group">
             <label for="product_display_size">Veľkosť displeja (in):</label>
-            <input type="number" id="product_display_size" name="display_size"  step="0.1" placeholder="Zadaj veľkosť displeja (in)" min="1" max="100" required>
+            <input type="number" id="product_display_size" name="display_size" step="0.1"
+                   placeholder="Zadaj veľkosť displeja (in)" min="1" max="100" required>
         </div>
 
         <div class="form-group">
             <label for="product_description">Opis:</label>
-            <textarea id="product_description" name="product_description" placeholder="Zadaj Opis" maxlength="365" required></textarea>
+            <textarea id="product_description" name="product_description" placeholder="Zadaj Opis" maxlength="365"
+                      required></textarea>
         </div>
 
         <div class="form-group">

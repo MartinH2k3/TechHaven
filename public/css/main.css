@@ -204,7 +204,7 @@ a.fancy-text{
     width: 7rem; /* Expand container to reveal search field */
 }
 
-/* login screen base */
+/* login screen */
 #profile-icon {
     cursor: pointer;
 }
@@ -238,6 +238,7 @@ a.fancy-text{
     text-align: center;
 }
 .login-form input[type="text"],
+.login-form input[type="email"],
 .login-form input[type="password"] {
     padding: 0.6rem;
     margin: 0.3rem 0;

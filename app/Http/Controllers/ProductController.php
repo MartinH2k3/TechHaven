@@ -68,6 +68,6 @@ class ProductController extends Controller
     {
         $product = Product::with('images')->findOrFail($id);
 
-        return view('product-page', compact('product'));
+        return view('customer.product-page', compact('product'));
     }
 }

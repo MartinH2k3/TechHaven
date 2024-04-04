@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('title', 'Shopping Cart - TechHaven')
 
@@ -27,12 +27,12 @@
     @if($stage == '1')
         <x-cart-stage1 :cart-items="$cartItems"/>
     @elseif($stage == '2')
-        <x-cart-stage2 />
+        <x-cart-stage2/>
     @elseif($stage == '3')
-        <x-cart-stage3 />
+        <x-cart-stage3/>
     @elseif($stage == '4')
-        <x-cart-stage4 />
+        <x-cart-stage4/>
     @else
-        <x-cart-stage1 /> {{-- Default: stage 1 --}}
+        <x-cart-stage1/> {{-- Default: stage 1 --}}
     @endif
 @endsection

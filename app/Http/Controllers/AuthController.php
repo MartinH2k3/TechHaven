@@ -37,7 +37,7 @@ class AuthController extends Controller
     // Show registration form
     public function registerView(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('register');
+        return view('customer.register');
     }
 
     // Handle registration
