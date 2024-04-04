@@ -2,9 +2,9 @@
 
 @section('title', 'Shopping Cart - TechHaven')
 
-@section('windowSpecificStylesheets')
+@push('windowSpecificStylesheets')
     <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
-@endsection
+@endpush
 
 @section('content')
     <nav id="shopping-cart-nav" class="shopping-cart-container">

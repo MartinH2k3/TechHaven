@@ -2,9 +2,9 @@
 
 @section('title', $product->name)
 
-@section('windowSpecificStylesheets')
+@push('windowSpecificStylesheets')
     <link rel="stylesheet" href="{{ asset('css/product-page.css') }}">
-@endsection
+@endpush
 
 @section('content')
     <div id="product-container">
@@ -38,10 +38,10 @@
     </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
     <script>
         function changeMainImage(imagePath) {
             document.getElementById('main-product-image').src = imagePath;
         }
     </script>
-@endsection
+@endpush

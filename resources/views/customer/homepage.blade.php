@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('windowSpecificStylesheets')
+@push('windowSpecificStylesheets')
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
-@endsection
+@endpush
 
 @section('content')
     <div class="slide-container">
@@ -29,6 +29,6 @@
     </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
     <script src="{{ asset('js/homepage.js') }}"></script>
-@endsection
+@endpush
