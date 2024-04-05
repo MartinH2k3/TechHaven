@@ -33,6 +33,6 @@
     @elseif($stage == '4')
         <x-cart-stage4/>
     @else
-        <x-cart-stage1/> {{-- Default: stage 1 --}}
+        <x-cart-stage1 :cart-items="$cartItems"/> {{-- Default: stage 1 --}}
     @endif
 @endsection
