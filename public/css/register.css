@@ -25,7 +25,8 @@ body {
     text-align: center;
 }
 .register-form input[type="text"],
-.register-form input[type="password"] {
+.register-form input[type="password"],
+.register-form input[type="email"]{
     padding: 0.7rem;
     margin: 0.3rem 0;
     border: 1px solid var(--soft-border-color);
