@@ -78,12 +78,18 @@ button#switch-to-next-stage:hover {
 }
 
 .product-quantity-input {
-    width: 50%;
+    width: 2rem;
 }
 
 .stage1-remove {
     margin-left: 0.6rem;
     cursor: pointer;
+    padding: 0;
+    /* Remove default button styles */
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: inherit;
 }
 
 .stage1-total {
@@ -113,7 +119,7 @@ button#switch-to-next-stage:hover {
 
 @media (max-width: 576px) {
     .stage1-row {
-        grid-template-columns: 3fr 1fr 1fr; /* Removed column for unit price */
+        grid-template-columns: 3fr 1fr 0 1fr; /* Removed column for unit price */
     }
 
     .stage1-row .stage1-price {
