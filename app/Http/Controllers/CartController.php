@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -109,16 +110,16 @@ class CartController extends Controller
         return response()->json(['message' => 'Product removed']);
     }
 
-
-    public function showCart(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    private function getCartItems(): Collection|\Illuminate\Support\Collection|array
     {
         $cartItems = collect();
 
         if (Auth::check()) {
             // Fetch cart items from database for the logged-in user
             $userId = Auth::id();
-            $cartItems = ShoppingCartProduct::with('product')
+            return ShoppingCartProduct::with('product')
                 ->where('user_id', $userId)
+                ->orderBy('created_at', 'desc')
                 ->get();
         } else {
             // Fetch cart items from session for guests
@@ -135,6 +136,20 @@ class CartController extends Controller
             }
         }
 
+        return $cartItems;
+    }
+
+    public function showCart(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        $cartItems = $this->getCartItems();
+
         return view('customer.cart', compact('cartItems'));
     }
+
+    public function refreshCart(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        $cartItems = $this->getCartItems();
+        return view('components.cart-stage1', ['cartItems' => $cartItems]);
+    }
+
 }

@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     return response.json();
                 })
                 .then(data => {
-                    alert('Product added to cart successfully!');
+                    console.log('Product added to cart successfully!');
                 })
                 .catch(error => {
-                    alert('Failed to add product to cart.');
+                    console.log('Failed to add product to cart.');
                 });
         });
     });
