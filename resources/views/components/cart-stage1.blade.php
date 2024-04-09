@@ -78,10 +78,7 @@
             },
             body: `product_id=${productId}&product_count=${productCount}`
         })
-            .then(response => response.json())
-            .then(data => {
-                refreshCartComponent();
-            })
+            .then(() => refreshCartComponent()) // promise is not used here, so no need to pass data
             .catch(error => {
                 console.error('Error updating cart:', error);
             });
@@ -100,10 +97,7 @@
             },
             body: `product_id=${productId}`
         })
-            .then(response => response.json())
-            .then(data => {
-                refreshCartComponent();
-            })
+            .then(() => refreshCartComponent()) // same here
             .catch(error => {
                 console.error('Error removing item:', error);
             });
@@ -115,7 +109,7 @@
             .then(html => {
                 const cartContainer = document.querySelector('.cart-stage-container');
                 cartContainer.innerHTML = html;
-                setupEventListeners(); // Re-setup event listeners after updating HTML
+                setupEventListeners();
             })
             .catch(error => {
                 console.error('Error refreshing cart:', error);
