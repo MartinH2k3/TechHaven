@@ -1,20 +1,30 @@
-$(document).ready(function() {
-    $('.add-to-cart-button-form').on('submit', function(e) {
-        e.preventDefault(); // Prevent the default form submission
-        var formData = $(this).serialize(); // Serialize form data
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.add-to-cart-button-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // So the page doesn't refresh
 
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'),
-            data: formData,
-            success: function(response) {
-                // Handle success (e.g., show a message, update cart count)
-                alert('Product added to cart successfully!');
-            },
-            error: function(error) {
-                // Handle error
-                alert('Failed to add product to cart.');
-            }
+            // Serialize form data
+            const formData = new FormData(form);
+
+            // Convert FormData to URLSearchParams for easy submission
+            const searchParams = new URLSearchParams(formData);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: searchParams
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Product added to cart successfully!');
+                })
+                .catch(error => {
+                    alert('Failed to add product to cart.');
+                });
         });
     });
 });

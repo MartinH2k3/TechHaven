@@ -28,7 +28,7 @@
             <span class="product-price">{{ number_format($product->price, 2) }} €</span>
 
             <!-- Quantity input and Add to Cart button -->
-            <form action="{{ route('cart.add') }}" method="post">
+            <form action="{{ route('cart.add') }}" method="post" class="add-to-cart-button-form">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
 
@@ -50,4 +50,6 @@
             document.getElementById('main-product-image').src = imagePath;
         }
     </script>
+    <script src="{{ asset('js/add-to-cart.js') }}"></script>
 @endpush
+
