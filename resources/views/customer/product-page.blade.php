@@ -28,12 +28,18 @@
             <span class="product-price">{{ number_format($product->price, 2) }} €</span>
 
             <!-- Quantity input and Add to Cart button -->
-            <label for="product-quantity-input" id="product-quantity-input-label">Počet:
-                <input id="product-quantity-input" type="number" value="1" min="1" max="99">
-            </label>
-            <div class="product-button-div">
-                <button class="product-button">Pridať do košíka</button>
-            </div>
+            <form action="{{ route('cart.add') }}" method="post">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                <label for="product-quantity-input" id="product-quantity-input-label">Počet:
+                    <input id="product-quantity-input" name="product_count" type="number" value="1" min="1" max="99">
+                </label>
+
+                <div class="product-button-div">
+                    <button type="submit" class="product-button">Pridať do košíka</button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
