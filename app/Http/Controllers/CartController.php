@@ -9,7 +9,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App\Models\ShoppingCartProduct;
 
 class CartController extends Controller
@@ -51,6 +50,65 @@ class CartController extends Controller
             Session::put('shopping_cart', $cart);
         }
     }
+
+    public function updateQuantity(Request $request)
+    {
+        $productId = $request->product_id;
+        $newQuantity = $request->product_count;
+
+        if (Auth::check()) {
+            $cartItem = ShoppingCartProduct::where('user_id', Auth::id())
+                ->where('product_id', $productId)
+                ->first();
+            if ($cartItem) {
+                $cartItem->update(['product_count' => $newQuantity]);
+            }
+        } else {
+            $cart = session()->get('shopping_cart', []);
+            $found = false;
+
+            foreach ($cart as $index => $item) {
+                if ($item['product_id'] == $productId) {
+                    $cart[$index]['product_count'] = $newQuantity;
+                    $found = true;
+                    break;
+                }
+            }
+
+            if (!$found) {
+                $cart[] = ['product_id' => $productId, 'product_count' => $newQuantity];
+            }
+
+            session()->put('shopping_cart', $cart);
+        }
+
+        return response()->json(['message' => 'Quantity updated']);
+    }
+
+    public function removeFromCart(Request $request)
+    {
+        $productId = $request->product_id;
+
+        if (Auth::check()) {
+            ShoppingCartProduct::where('user_id', Auth::id())
+                ->where('product_id', $productId)
+                ->delete();
+        } else {
+            $cart = session()->get('shopping_cart', []);
+            $newCart = [];
+
+            foreach ($cart as $item) {
+                if ($item['product_id'] != $productId) {
+                    $newCart[] = $item;  // Only keep items that don't match the ID to remove
+                }
+            }
+
+            session()->put('shopping_cart', $newCart);
+        }
+
+        return response()->json(['message' => 'Product removed']);
+    }
+
 
     public function showCart(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {

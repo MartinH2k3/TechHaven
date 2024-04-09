@@ -77,7 +77,7 @@ button#switch-to-next-stage:hover {
     justify-content: space-between;
 }
 
-.product-quantity-input {
+.product-count-input {
     width: 2rem;
 }
 
@@ -85,6 +85,10 @@ button#switch-to-next-stage:hover {
     margin-left: 0.6rem;
     cursor: pointer;
     padding: 0;
+}
+
+.stage1-remove button {
+    cursor: pointer;
     /* Remove default button styles */
     background: none;
     border: none;
@@ -111,7 +115,7 @@ button#switch-to-next-stage:hover {
         justify-content: center; /* Centering quantity and remove icon */
     }
 
-    .product-quantity-input, .stage1-remove {
+    .product-count-input, .stage1-remove {
         margin: 0 auto; /* Centering within their container */
     }
 }

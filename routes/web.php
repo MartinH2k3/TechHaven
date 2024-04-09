@@ -40,6 +40,15 @@ Route::get('/product/{product_id}', [ProductController::class, 'show'])->name('p
 
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 
+// Updating cart quantity
+Route::post('/cart/update', [CartController::class, 'updateQuantity'])->name('cart.update');
+
+// Removing item from cart
+Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+// Refreshing stage 1 of the cart
+Route::get('/cart/refresh', [CartController::class, 'refreshCart'])->name('cart.refresh');
+
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 
 
