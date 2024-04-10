@@ -13,11 +13,17 @@ return new class extends Migration {
             $table->enum('status', ['pending', 'paid', 'complete', 'canceled']);
             $table->integer('total_price');
             $table->enum('delivery_method', ['SPS', 'DPD']);
-            $table->uuid('delivery_information_id'); // Consider a JSON column or a related table
+            $table->string('first_name', 64);
+            $table->string('last_name', 64);
+            $table->string('street_address', 100);
+            $table->string('street_number', 15);
+            $table->string('postal_code', 15);
+            $table->string('city', 40);
+            $table->string('phone_number', 15);
+            $table->string('email', 320);
             $table->timestamps();
 
             $table->foreign('owner_id')->references('id')->on('users');
-            $table->foreign('delivery_information_id')->references('id')->on('delivery_information');
         });
     }
 
