@@ -11,13 +11,14 @@ return new class extends Migration {
             $table->uuid('id')->primary();
             $table->uuid('owner_id')->nullable();
             $table->enum('status', ['pending', 'paid', 'complete', 'canceled']);
-            $table->integer('total_price');
+            $table->decimal('total_price', 10, 2);
             $table->enum('delivery_method', ['SPS', 'DPD']);
+            $table->enum('payment_method', ['Google Pay', 'Pay Pal', 'Pri doručení']);
             $table->string('first_name', 64);
             $table->string('last_name', 64);
             $table->string('street_address', 100);
-            $table->string('street_number', 15);
-            $table->string('postal_code', 15);
+            $table->integer('street_number');
+            $table->string('postal_code', 5);
             $table->string('city', 40);
             $table->string('phone_number', 15);
             $table->string('email', 320);

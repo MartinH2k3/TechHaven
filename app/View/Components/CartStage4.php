@@ -8,12 +8,21 @@ use Illuminate\View\Component;
 
 class CartStage4 extends Component
 {
+    public mixed $cartItems;
+    public string $paymentMethod;
+    public string $deliveryMethod;
+
     /**
      * Create a new component instance.
+     * @param mixed $cartItems
+     * @param string $paymentMethod
+     * @param string $deliveryMethod
      */
-    public function __construct()
+    public function __construct(mixed $cartItems, string $paymentMethod, string $deliveryMethod)
     {
-        //
+        $this->cartItems = $cartItems;
+        $this->paymentMethod = $paymentMethod;
+        $this->deliveryMethod = $deliveryMethod;
     }
 
     /**

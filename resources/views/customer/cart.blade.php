@@ -17,6 +17,8 @@
         <a href="{{ route('cart.show', ['stage' => '3']) }}" class="cart-stage-ref">Dodacie údaje</a>
         <i class="fas fa-chevron-right"></i>
         <a href="{{ route('cart.show', ['stage' => '4']) }}" class="cart-stage-ref">Zhrnutie</a>
+        {{ $paymentMethod }}
+        {{ $deliveryMethod }}
     </nav>
 
     {{-- Dynamically include the stage component based on the query parameter --}}
@@ -31,7 +33,7 @@
         @elseif($stage == '3')
             <x-cart-stage3/>
         @elseif($stage == '4')
-            <x-cart-stage4/>
+            <x-cart-stage4 :cart-items="$cartItems" :payment-method="$paymentMethod" :delivery-method="$deliveryMethod" />
         @else
             <x-cart-stage1 :cart-items="$cartItems"/> {{-- Default: stage 1 --}}
         @endif
