@@ -1,6 +1,5 @@
 @props(['cartItems', 'paymentMethod', 'deliveryMethod'])
-{{ $paymentMethod }}
-{{ $deliveryMethod }}
+
 <div class="stage-content shopping-cart-container">
     <form class="summary-form" action="{{ route('cart.summary.order.submit') }}" method="POST">
         @csrf
@@ -45,4 +44,5 @@
         </div>
         <button type="submit" id="order-button">Objednať</button>
     </form>
+
 </div>
