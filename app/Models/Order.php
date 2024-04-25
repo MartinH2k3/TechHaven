@@ -9,8 +9,6 @@ class Order extends Model
 {
     use HasFactory;
 
-    const PAYMENT_METHODS = ['Google Pay', 'Pay Pal', 'Pri doručení'];
-    const DELIVERY_METHODS = ['SPS', 'DHL'];
     protected $keyType = 'string';
     public $incrementing = false;
 
@@ -20,6 +18,6 @@ class Order extends Model
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class, 'owner_id');
+        return $this->belongsTo(User::class, 'owner_id')->withDefault();
     }
 }

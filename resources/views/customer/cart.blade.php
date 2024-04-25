@@ -17,8 +17,6 @@
         <a href="{{ route('cart.show', ['stage' => '3']) }}" class="cart-stage-ref">Dodacie údaje</a>
         <i class="fas fa-chevron-right"></i>
         <a href="{{ route('cart.show', ['stage' => '4']) }}" class="cart-stage-ref">Zhrnutie</a>
-        {{ $paymentMethod }}
-        {{ $deliveryMethod }}
     </nav>
 
     {{-- Dynamically include the stage component based on the query parameter --}}

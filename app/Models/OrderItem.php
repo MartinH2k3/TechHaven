@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class OrderItem extends Model
 {
     use HasFactory;
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     protected $fillable = [
-        'order_id', 'product_id', 'quantity', 'price',
+        'id', 'order_id', 'product_id', 'quantity', 'price',
     ];
 
     public function order(): \Illuminate\Database\Eloquent\Relations\BelongsTo

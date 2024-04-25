@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->uuid('owner_id')->nullable();
             $table->enum('status', ['pending', 'paid', 'complete', 'canceled']);
             $table->decimal('total_price', 10, 2);
-            $table->enum('delivery_method', ['SPS', 'DPD']);
+            $table->enum('delivery_method', ['SPS', 'DHL']);
             $table->enum('payment_method', ['Google Pay', 'Pay Pal', 'Pri doručení']);
             $table->string('first_name', 64);
             $table->string('last_name', 64);

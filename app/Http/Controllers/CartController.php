@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,7 +15,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ShoppingCartProduct;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 
 class CartController extends Controller
 {
@@ -163,25 +163,10 @@ class CartController extends Controller
 
     public function submitPaymentAndDelivery(Request $request): JsonResponse
     {
-        // Validate the request data for payment, delivery method if enum
-        $request->validate([
-            'payment_method' => [
-                'required',
-                Rule::in(Order::PAYMENT_METHODS),
-            ],
-            'delivery_method' => [
-                'required',
-                Rule::in(Order::DELIVERY_METHODS),
-            ],
-        ]);
-
-        error_log($request->input('payment_method'));
-        error_log($request->input('delivery_method'));
         $paymentMethod = $request->input('payment_method');
         $deliveryMethod = $request->input('delivery_method');
-        error_log($paymentMethod);
-        error_log($deliveryMethod);
 
+        // Save the payment and delivery method in the session
         session()->put('payment_method', $paymentMethod);
         session()->put('delivery_method', $deliveryMethod);
 
@@ -190,13 +175,14 @@ class CartController extends Controller
 
     public function submitAddress(Request $request): JsonResponse
     {
+        // Validate the address
         $validatedDataAddress = $request->validate([
             'first_name' => 'required|string|max:64',
             'last_name' => 'required|string|max:64',
             'street_address' => 'required|string|max:100',
             'street_number' => 'required|integer',
             'city' => 'required|string|max:40',
-            'post_code' => 'required|string|max:5',
+            'postal_code' => 'required|string|max:5',
             'email' => 'required|email|max:255',
             'phone_number' => 'required|string|max:15',
         ]);
@@ -205,9 +191,8 @@ class CartController extends Controller
 
         return response()->json(['message' => 'Address saved.']);
     }
-    public function createOrder(Request $request): JsonResponse
+    public function createOrder(): JsonResponse
     {
-
         // Get the cart items
         $cartItems = $this->getCartItems();
 
@@ -222,22 +207,24 @@ class CartController extends Controller
             'owner_id' => Auth::check() ? Auth::id() : null,
             'status' => 'pending',
             'total_price' => $totalPrice,
-            'payment_method' => session()->get('payment_method'),
-            'delivery_method' => session()->get('delivery_method'),
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'street_address' => $request->street_address,
-            'street_number' => $request->street_number,
-            'postal_code' => $request->postal_code,
-            'city' => $request->city,
-            'phone_number' => $request->phone_number,
-            'email' => $request->email,
+            'payment_method' => session()->get('payment_method', 'Google Pay'),
+            'delivery_method' => session()->get('delivery_method','SPS'),
+            'first_name' => session()->get('delivery_details.first_name'),
+            'last_name' => session()->get('delivery_details.last_name'),
+            'street_address' => session()->get('delivery_details.street_address'),
+            'street_number' => session()->get('delivery_details.street_number'),
+            'postal_code' => session()->get('delivery_details.postal_code'),
+            'city' => session()->get('delivery_details.city'),
+            'phone_number' => session()->get('delivery_details.phone_number'),
+            'email' => session()->get('delivery_details.email'),
         ]);
 
-        // Add the cart items to the order
+        // Create the order items
         foreach ($cartItems as $cartItem) {
-            $order->items()->create([
-                'product_id' => $cartItem->product_id,//orderid sa nastavi automaticky
+            OrderItem::create([
+                'id' => Str::uuid(),
+                'order_id' => $order->id,
+                'product_id' => $cartItem->product_id,
                 'quantity' => $cartItem->product_count,
                 'price' => $cartItem->product->price,
             ]);
