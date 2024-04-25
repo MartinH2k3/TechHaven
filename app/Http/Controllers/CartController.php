@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -191,7 +192,7 @@ class CartController extends Controller
 
         return response()->json(['message' => 'Address saved.']);
     }
-    public function createOrder(): JsonResponse
+    public function createOrder(): RedirectResponse
     {
         // Get the cart items
         $cartItems = $this->getCartItems();
@@ -237,8 +238,11 @@ class CartController extends Controller
         } else {
             Session::forget('shopping_cart');
         }
+        Session::forget('payment_method');
+        Session::forget('delivery_method');
+        Session::forget('delivery_details');
 
-        return response()->json(['message' => 'Order created']);
+        return redirect('/')->with('success', 'Order created successfully');
     }
 
 }

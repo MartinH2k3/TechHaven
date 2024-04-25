@@ -1,10 +1,13 @@
 @extends('layouts.app')
+<!--Include the alert component, when order is created-->
+@include('components.alert')
 
 @push('windowSpecificStylesheets')
     <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 @endpush
 
 @section('content')
+
     <div class="slide-container">
         <button class="slide-arrow left-arrow">&#10094;</button>
         <div id="homepage_slide_1" class="slide">
@@ -28,6 +31,7 @@
         <button class="slide-arrow right-arrow">&#10095;</button>
     </div>
 @endsection
+
 
 @push('scripts')
     <script src="{{ asset('js/homepage.js') }}"></script>
