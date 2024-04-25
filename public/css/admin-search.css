@@ -1,0 +1,111 @@
+header {
+    width:100%;
+}
+
+.search-product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    gap: 1rem;
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid var(--soft-border-color);
+    border-radius: 0.3rem;
+    padding: 1.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.2);
+    background-color: var(--menu-color);
+    margin: 2rem 2rem;
+
+}
+.search-product-container h1{
+    text-align: center;
+}
+
+.search_for_product_name_form {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1rem;
+}
+.search_for_product_name_form label{
+    width: 100%;
+}
+.search_for_product_name_form input{
+    flex: 1 1 auto;
+    padding: 0.7rem;
+    margin: 0.3rem 0;
+    border: 1px solid var(--soft-border-color);
+    border-radius: 0.3rem;
+    width: 100%;
+}
+.search_for_product_name_form button {
+    border: none;
+    border-radius: 0.3rem;
+    background-color: var(--button-color);
+    color: white;
+    cursor: pointer;
+    width: 12.5rem;
+    margin: auto;
+    padding: 0.6rem;
+}
+.search-product-container button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.products-table th, .products-table td {
+    border: 1px solid var(--soft-border-color);
+    padding: 0.5rem;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .main{
+        flex: 1;
+    }
+    .search_for_product_name_form label,
+    .search_for_product_name_form input{
+        width: 100%;
+    }
+    .products-table th:nth-child(4),
+    .products-table td:nth-child(4),
+    .products-table th:nth-child(5),
+    .products-table td:nth-child(5),
+    .products-table th:nth-child(6),
+    .products-table td:nth-child(6) {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .main{
+        flex: 1;
+    }
+
+    .search_for_product_name_container {
+        flex-direction: column;
+    }
+    .search_for_product_name_container label {
+        width: 100%;
+    }
+    .search_for_product_name_container input {
+        width: calc(100% - 1.4rem);
+    }
+    .products-table th:nth-child(3),
+    .products-table td:nth-child(3),
+    .products-table th:nth-child(4),
+    .products-table td:nth-child(4),
+    .products-table th:nth-child(5),
+    .products-table td:nth-child(5),
+    .products-table th:nth-child(6),
+    .products-table td:nth-child(6),
+    .products-table th:nth-child(7),
+    .products-table td:nth-child(7){
+        display: none;
+    }
+
+}

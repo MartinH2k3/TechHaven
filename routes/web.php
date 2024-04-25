@@ -32,9 +32,18 @@ Route::get('/admin-add', function () {
 
 Route::post('/admin-add', [ProductController::class, 'store'])->middleware(AdminMiddleware::class)->name('admin.add');
 
+//Route::get('/admin-search', function () {
+//    return view('admin.search');
+//})->middleware(AdminMiddleware::class)->name('admin.search');
+Route::get('/admin-search', [ProductController::class, 'search'])->middleware(AdminMiddleware::class)->name('admin.search');
+//Route::post('/admin-add', [ProductController::class, 'store'])->middleware(AdminMiddleware::class)->name('admin.add');
+
 Route::get('/admin-manage', function () {
     return view('admin.manage');
 })->middleware(AdminMiddleware::class)->name('admin.manage');
+//Route::post('/admin-add', [ProductController::class, 'store'])->middleware(AdminMiddleware::class)->name('admin.add');
+
+
 
 Route::get('/product/{product_id}', [ProductController::class, 'show'])->name('product-page');
 

@@ -6,7 +6,7 @@
         <a href="{{ route('admin.add') }}" class="button-link">
             <button type="button" class="create-product">Vytvoriť nový produkt</button>
         </a>
-        <a href="{{ route('admin.manage') }}" class="button-link">
+        <a href="{{ route('admin.search') }}" class="button-link">
             <button type="button" class="remove-product">Zmeniť/odstrániť produkt</button>
         </a>
     </div>

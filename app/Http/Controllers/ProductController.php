@@ -70,4 +70,23 @@ class ProductController extends Controller
 
         return view('customer.product-page', compact('product'));
     }
+
+    public function search(Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        // Start the query builder
+        $products = Product::query();
+        error_log($products->count());
+        // Apply search filter
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = $request->input('search');
+            $products->where('product_name', 'LIKE', '%' . $searchTerm . '%');
+            error_log($products->count());
+
+        }
+        error_log($products->count());
+
+        // Get the results
+        $products = $products->get();
+        return view('admin.search', compact('products'));
+    }
 }
