@@ -149,8 +149,8 @@ class CartController extends Controller
         $cartItems = $this->getCartItems();
 //        $paymentMethod = session()->get('payment_method', 'denent_method');
 //        $deliveryMethod = session()->get('delivery_method');
-        $paymentMethod = session()->has('payment_method') ? session()->get('payment_method', 'default_payment_method') : 'default_payment_method' ;
-        $deliveryMethod = session()->has('delivery_method') ? session()->get('delivery_method') : 'default_delivery_method';
+        $paymentMethod = session()->has('payment_method') ? session()->get('payment_method', 'Google Pay') : 'Google Pay';
+        $deliveryMethod = session()->has('delivery_method') ? session()->get('delivery_method', 'DHL') : 'DHL';
 
 
         return view('customer.cart', compact('cartItems', 'paymentMethod', 'deliveryMethod'));
