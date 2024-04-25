@@ -2,13 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrowseController;
-use App\Http\Controllers\PaymentDeliveryController;
-use App\Http\Controllers\AddressController;
 
 // Authentication Routes
 Route::post('login', [AuthController::class, 'login'])->name('login');
@@ -54,17 +51,9 @@ Route::get('/cart/refresh', [CartController::class, 'refreshCart'])->name('cart.
 
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 
-//Route::get('/paymentDelivery', [PaymentDeliveryController::class, 'showPaymentDelivery'])->name('paymentDelivery.show');
-//Route::post('/paymentDelivery', [PaymentDeliveryController::class, 'submitPaymentAndDelivery'])->name('paymentDelivery.submit');
-Route::post('cart/paymentDelivery', [CartController::class, 'submitPaymentAndDelivery'])->name('cart.paymentDelivery.submit');
-
-//Route::post('/cart/paymentDelivery', [CartController::class, 'showSummary'])->name('cart.summary');
-
-//Route::get('/address', [AddressController::class, 'showAddress'])->name('address.show');
+// Payment and delivery form, address form, and order summary
+Route::post('/cart/paymentDelivery', [CartController::class, 'submitPaymentAndDelivery'])->name('cart.paymentDelivery.submit');
 Route::post('/cart/address', [CartController::class, 'submitAddress'])->name('cart.address.submit');
-
-//Route::get('/summary', [OrderController::class, 'showSummary'])->name('summary.show');
-//Route::get('/cart/summaryShow', [CartController::class, 'showSummary'])->name('cart.summary.show');
 Route::post('/cart/summary', [CartController::class, 'createOrder'])->name('cart.summary.order.submit');
 
 

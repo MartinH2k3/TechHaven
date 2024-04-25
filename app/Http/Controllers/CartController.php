@@ -242,7 +242,7 @@ class CartController extends Controller
         Session::forget('delivery_method');
         Session::forget('delivery_details');
 
-        return redirect('/')->with('success', 'Order created successfully');
+        return redirect('/')->with('success', 'Objednávka úspešne vytvorená.');
     }
 
 }
