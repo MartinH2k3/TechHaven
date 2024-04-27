@@ -118,6 +118,7 @@ class ProductController extends Controller
      *
      * This method is responsible for handling the management of a product. It can
      * update the product or delete it based on the action specified in the request.
+     * It deletes the product images from storage and the database if the product is deleted.
      *
      * @param Request $request The request object containing the data to manage the product.
      * @return RedirectResponse A redirect response to the search page with a success or error message.
@@ -146,14 +147,46 @@ class ProductController extends Controller
             $validatedData = array_filter($validatedData, function ($value) {
                 return !is_null($value);
             });
+            // Remove product_image from the validated data
+            unset($validatedData['product_image']);
 
             // Update the product
             Product::where('id', $id)->update($validatedData);
+
+            // Update the product images
+            if ($request->hasfile('product_image')) {
+                foreach ($request->file('product_image') as $image) {
+                    // Generate a random filename with the correct extension
+                    $filename = Str::random(40) . '.' . $image->extension();
+
+                    // Store the image in the public disk under 'product_images' directory
+                    $path = $image->storeAs('images/product-images', $filename, 'public');
+
+                    $imageModel = new Image([
+                        'product_id' => $id,
+                        'filename' => $filename,
+                    ]);
+
+                    $imageModel->save();
+                }
+            }
 
             return redirect()->route('admin.search')->with('success', 'Produkt bol upravený.');
         }
         // Delete the product
         else if ($request->input('action') == 'remove') {
+            // Get all images of the product
+            $images = Image::where('product_id', $id)->get();
+
+            // Delete each image file from storage
+            foreach ($images as $image) {
+                Storage::disk('public')->delete('images/product-images/' . $image->filename);
+            }
+
+            // Delete image records from database
+            Image::where('product_id', $id)->delete();
+
+            // Delete the product
             Product::where('id', $id)->delete();
             return redirect()->route('admin.search')->with('success', 'Produkt bol vymazaný.');
         }
