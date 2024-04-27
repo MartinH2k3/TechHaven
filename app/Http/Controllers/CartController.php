@@ -144,15 +144,24 @@ class CartController extends Controller
         return $cartItems;
     }
 
+    /**
+     * Display the shopping cart.
+     *
+     * This method retrieves the items in the cart, the selected payment method, and the selected delivery method,
+     * and then returns a view of the shopping cart page with these data.
+     *
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application  The shopping cart page view with the cart items, payment method, and delivery method.
+     */
     public function showCart(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
+        // Retrieve the cart items
         $cartItems = $this->getCartItems();
-//        $paymentMethod = session()->get('payment_method', 'denent_method');
-//        $deliveryMethod = session()->get('delivery_method');
+        // Retrieve the selected payment method from the session, or use 'Google Pay' as the default
         $paymentMethod = session()->has('payment_method') ? session()->get('payment_method', 'Google Pay') : 'Google Pay';
+        // Retrieve the selected delivery method from the session, or use 'DHL' as the default
         $deliveryMethod = session()->has('delivery_method') ? session()->get('delivery_method', 'DHL') : 'DHL';
 
-
+        // Return the shopping cart page view with the cart items, payment method, and delivery method
         return view('customer.cart', compact('cartItems', 'paymentMethod', 'deliveryMethod'));
     }
 
@@ -162,8 +171,18 @@ class CartController extends Controller
         return view('components.cart-stage1', ['cartItems' => $cartItems]);
     }
 
-    public function submitPaymentAndDelivery(Request $request): JsonResponse
+    /**
+     * Submit the selected payment and delivery methods.
+     *
+     * This method retrieves the payment and delivery methods from the request and saves them in the session.
+     * It then returns a redirect response back to the previous page with a success message.
+     *
+     * @param  Request  $request  The request object, which should include 'payment_method' and 'delivery_method' parameters.
+     * @return RedirectResponse  A redirect response back to the previous page with a success message.
+     */
+    public function submitPaymentAndDelivery(Request $request): RedirectResponse
     {
+        // Retrieve the payment and delivery method from the request
         $paymentMethod = $request->input('payment_method');
         $deliveryMethod = $request->input('delivery_method');
 
@@ -171,10 +190,19 @@ class CartController extends Controller
         session()->put('payment_method', $paymentMethod);
         session()->put('delivery_method', $deliveryMethod);
 
-        return response()->json(['message' => 'Payment and delivery method saved.']);
+        return back()->with('success', 'Platba a doprava bola uložená.');
     }
 
-    public function submitAddress(Request $request): JsonResponse
+    /**
+     * Submit the delivery address.
+     *
+     * This method validates the address details in the request and if they are valid, it saves them in the session.
+     * It then returns a redirect response back to the previous page with a success message.
+     *
+     * @param  Request  $request  The request object, which should include the address details parameters.
+     * @return RedirectResponse  A redirect response back to the previous page with a success message.
+     */
+    public function submitAddress(Request $request): RedirectResponse
     {
         // Validate the address
         $validatedDataAddress = $request->validate([
@@ -188,21 +216,32 @@ class CartController extends Controller
             'phone_number' => 'required|string|max:15',
         ]);
 
+        // Save the address in the session
         session()->put('delivery_details', $validatedDataAddress);
 
-        return response()->json(['message' => 'Address saved.']);
+        return back()->with('success', 'Adresa bola uložená.');
     }
+
+    /**
+     * Create a new order.
+     *
+     * This method is responsible for creating a new order based on the items in the cart.
+     * It calculates the total price of the order, creates the order record in the database,
+     * creates the order items records in the database, and then clears the cart.
+     *
+     * @return RedirectResponse  A redirect response to the home page with a success message.
+     */
     public function createOrder(): RedirectResponse
     {
         // Get the cart items
         $cartItems = $this->getCartItems();
 
-        // Calculate the total price
+        // Calculate the total price of the order
         $totalPrice = $cartItems->reduce(function ($carry, $item) {
             return $carry + ($item->product->price * $item->product_count);
         }, 0);
 
-        // Create the order
+        // Create the order in the database
         $order = Order::create([
             'id' => Str::uuid(),
             'owner_id' => Auth::check() ? Auth::id() : null,
@@ -220,7 +259,7 @@ class CartController extends Controller
             'email' => session()->get('delivery_details.email'),
         ]);
 
-        // Create the order items
+        // Create the order items records in the database
         foreach ($cartItems as $cartItem) {
             OrderItem::create([
                 'id' => Str::uuid(),
@@ -242,6 +281,7 @@ class CartController extends Controller
         Session::forget('delivery_method');
         Session::forget('delivery_details');
 
+        // Redirect to the home page with a success message
         return redirect('/')->with('success', 'Objednávka úspešne vytvorená.');
     }
 

@@ -5,6 +5,7 @@
 @push('windowSpecificStylesheets')
     <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 @endpush
+@include('components.alert')
 
 @section('content')
     <nav id="shopping-cart-nav" class="shopping-cart-container">
