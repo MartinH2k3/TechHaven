@@ -32,16 +32,12 @@ Route::get('/admin-add', function () {
 
 Route::post('/admin-add', [ProductController::class, 'store'])->middleware(AdminMiddleware::class)->name('admin.add');
 
-//Route::get('/admin-search', function () {
-//    return view('admin.search');
-//})->middleware(AdminMiddleware::class)->name('admin.search');
+// Search in admin
 Route::get('/admin-search', [ProductController::class, 'search'])->middleware(AdminMiddleware::class)->name('admin.search');
-//Route::post('/admin-add', [ProductController::class, 'store'])->middleware(AdminMiddleware::class)->name('admin.add');
 
-Route::get('/admin-manage', function () {
-    return view('admin.manage');
-})->middleware(AdminMiddleware::class)->name('admin.manage');
-//Route::post('/admin-add', [ProductController::class, 'store'])->middleware(AdminMiddleware::class)->name('admin.add');
+// Changing and deleting products in admin
+Route::get('/admin-manage/{id}', [ProductController::class, 'showManage'])->middleware(AdminMiddleware::class)->name('admin.manage');
+Route::post('/admin-manage', [ProductController::class, 'manage'])->middleware(AdminMiddleware::class)->name('admin.manage.post');
 
 
 

@@ -62,7 +62,9 @@ header {
     padding: 0.5rem;
     text-align: left;
 }
-
+a {
+    text-decoration: underline;
+}
 @media (max-width: 768px) {
     .main{
         flex: 1;

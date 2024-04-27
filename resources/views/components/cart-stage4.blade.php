@@ -1,5 +1,6 @@
 @props(['cartItems', 'paymentMethod', 'deliveryMethod'])
-
+<!--Include the alert component.-->
+@include('components.alert')
 <div class="stage-content shopping-cart-container">
     <form class="summary-form" action="{{ route('cart.summary.order.submit') }}" method="POST">
         @csrf

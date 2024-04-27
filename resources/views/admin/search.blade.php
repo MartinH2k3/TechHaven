@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{{ asset('css/admin-search.css') }}">
 @endsection
 @props(['products'])
+<!--Include the alert component, when product is changed or removed.-->
+@include('components.alert')
 
 @section('content')
     <div class="search-product-container">
@@ -31,7 +33,7 @@
                     @foreach($products as $product)
                         <tr>
                             <td>{{ $product->id }}</td>
-                            <td>{{ $product->product_name }}</td>
+                            <td><a href="{{ route('admin.manage',['id' => $product->id]) }}">{{ $product->product_name }}</a></td>
                             <td>{{ $product->category }}</td>
                             <td>{{ $product->ram }}</td>
                             <td>{{ $product->operating_system }}</td>
