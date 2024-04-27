@@ -38,7 +38,8 @@ Route::get('/admin-search', [ProductController::class, 'search'])->middleware(Ad
 // Changing and deleting products in admin
 Route::get('/admin-manage/{id}', [ProductController::class, 'showManage'])->middleware(AdminMiddleware::class)->name('admin.manage');
 Route::post('/admin-manage', [ProductController::class, 'manage'])->middleware(AdminMiddleware::class)->name('admin.manage.post');
-
+// Removing an image from a product in admin when managing a product
+Route::delete('/admin/remove_image/{imageId}', [ProductController::class, 'removeImage'])->name('admin.remove_image');
 
 
 Route::get('/product/{product_id}', [ProductController::class, 'show'])->name('product-page');

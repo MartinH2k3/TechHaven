@@ -53,6 +53,25 @@ header {
 .change-remove-product-form h1{
     text-align: center;
 }
+
+.product-images-container .remove-image-button {
+    background-color: rgba(255, 0, 0, 0.709);
+    align-self: flex-end;
+    width: auto;
+    margin-right: 1rem;
+    margin-top: 0.5rem; /* Adjust as needed */
+    margin-bottom: 0.5rem; /* Adjust as needed */
+}
+.product-image {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.image-label {
+    font-size: 0.7em;
+    margin-right: auto;
+}
+
 .change-remove-product-container button {
     padding: 0.6rem;
     border: none;

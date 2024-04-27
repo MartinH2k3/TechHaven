@@ -89,8 +89,6 @@ class ProductController extends Controller
         if ($request->has('search') && !empty($request->search)) {
             $searchTerm = $request->input('search');
             $products->where('product_name', 'LIKE', '%' . $searchTerm . '%');
-            error_log($products->count());
-
         }
 
         // Get the results
@@ -110,7 +108,36 @@ class ProductController extends Controller
     public function showManage($id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         session()->put('product_id', $id);
-        return view('admin.manage');
+
+        // Load the product images
+        $images = Image::where('product_id', $id)->get();
+
+        return view('admin.manage', compact('images'));
+    }
+
+    /**
+     * Remove an image when managing product.
+     *
+     * This method is responsible for removing an image from a product.
+     * It finds the image by its ID, deletes the image file from storage,
+     * deletes the image record from the database, and then redirects back
+     * to the previous page with a success message.
+     *
+     * @param int $imageId  The ID of the image to remove.
+     * @return RedirectResponse  A redirect response to the previous page with a success message.
+     */
+    public function removeImage(int $imageId) : RedirectResponse
+    {
+        // Find the image
+        $image = Image::findOrFail($imageId);
+
+        // Delete the image file from storage
+        Storage::disk('public')->delete('images/product-images/' . $image->filename);
+
+        // Delete the image record from the database
+        $image->delete();
+
+        return back()->with('success', 'Obrázok bol odstránený.');
     }
 
     /**

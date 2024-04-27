@@ -3,6 +3,8 @@
 @section('windowSpecificStylesheets')
     <link rel="stylesheet" href="{{ asset('css/admin-manage.css') }}">
 @endsection
+@props(['images'])
+@include('components.alert')
 
 @section('content')
     <div class="change-remove-product-container">
@@ -65,6 +67,15 @@
                 <input type="file" id="product_image" name="product_image[]" placeholder="Vyber súbory" multiple>
             </div>
 
+            <div class="product-images-container">
+                @foreach ($images as $image)
+                    <div class="product-image" data-image-id="{{ $image->id }}">
+                        <label class="image-label">{{ pathinfo($image->filename, PATHINFO_BASENAME) }}</label>
+                        <button class="remove-image-button">Odstrániť obrázok</button>
+                    </div>
+                @endforeach
+            </div>
+
             <button type="submit" id="change-product-button" name="action" value="change">Zmeniť Produkt</button>
             <button type="submit" id="remove-product-button" name="action" value="remove">Odstrániť Produkt</button>
         </form>
@@ -78,4 +89,5 @@
             </ul>
         </div>
     @endif
+    <script src="{{ asset('js/remove-image.js') }}"></script>
 @endsection
