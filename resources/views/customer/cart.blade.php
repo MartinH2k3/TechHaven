@@ -36,5 +36,23 @@
         @else
             <x-cart-stage1 :cart-items="$cartItems"/> {{-- Default: stage 1 --}}
         @endif
+
+        @if($stage < 4)
+            <button id="next-stage-button" class="switch-to-next-stage">Next Stage</button>
+        @endif
+
+        @if (session('alert'))
+            <script>
+                alert('{{ session('alert') }}');
+            </script>
+        @endif
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.getElementById('next-stage-button').addEventListener('click', function() {
+            window.location.href = "{{ route('cart.show', ['stage' => $stage + 1]) }}";
+        });
+    </script>
+@endpush

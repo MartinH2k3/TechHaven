@@ -1,4 +1,4 @@
-<div class="stage-content shopping-cart-container">
+<div class="stage-container shopping-cart-container">
     <form class="address-form" action="{{ route('cart.address.submit') }}" method="POST" >
         @csrf
         <h1>Dodacie údaje</h1>
@@ -19,7 +19,7 @@
         <label for="phone_number">Telefónne číslo:</label>
         <input type="text" id="phone_number" name="phone_number" placeholder="Zadaj Telefónne číslo" required>
 
-        <button type="submit" id="address-button">Uložiť</button>
+        <button type="submit" class="submit-button">Uložiť</button>
     </form>
     @if ($errors->any())
         <div class="alert alert-danger">

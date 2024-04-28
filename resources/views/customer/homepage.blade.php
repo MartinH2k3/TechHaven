@@ -11,14 +11,12 @@
     <div class="slide-container">
         <button class="slide-arrow left-arrow">&#10094;</button>
         <div id="homepage_slide_1" class="slide">
-            <a href="https://www.google.com" target="_blank">
-                <img class="homepage-slide-image large-image"
-                     src="https://istore.ph/cdn/shop/files/2023-iPhone14Pro-Promo-Blocks.jpg?v=1677226972&width=2000"
-                     alt="Large Image">
-                <img class="homepage-slide-image small-image"
-                     src="{{ asset('images/homepageSlideshow/2023-iPhone14Pro-Promo-Blocks_900.jpg') }}"
-                     alt="Small Image">
-            </a>
+            <img class="homepage-slide-image large-image"
+                 src="https://istore.ph/cdn/shop/files/2023-iPhone14Pro-Promo-Blocks.jpg?v=1677226972&width=2000"
+                 alt="Large Image">
+            <img class="homepage-slide-image small-image"
+                 src="{{ asset('images/homepageSlideshow/2023-iPhone14Pro-Promo-Blocks_900.jpg') }}"
+                 alt="Small Image">
             <!-- Source: https://istore.ph/ -->
         </div>
         <div id="homepage_slide_2" class="slide">

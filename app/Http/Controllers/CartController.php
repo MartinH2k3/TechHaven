@@ -154,6 +154,9 @@ class CartController extends Controller
      */
     public function showCart(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
+        if (!session()->has('current_stage')) {
+            session()->put('current_stage', 2);
+        }
         // Retrieve the cart items
         $cartItems = $this->getCartItems();
         // Retrieve the selected payment method from the session, or use 'Google Pay' as the default
@@ -190,6 +193,10 @@ class CartController extends Controller
         session()->put('payment_method', $paymentMethod);
         session()->put('delivery_method', $deliveryMethod);
 
+        if (session()->get('current_stage') < 3) {
+            session()->put('current_stage', 3);
+        }
+
         return back()->with('success', 'Platba a doprava bola uložená.');
     }
 
@@ -218,6 +225,10 @@ class CartController extends Controller
 
         // Save the address in the session
         session()->put('delivery_details', $validatedDataAddress);
+
+        if (session()->get('current_stage') < 4) {
+            session()->put('current_stage', 4);
+        }
 
         return back()->with('success', 'Adresa bola uložená.');
     }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\CheckStage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrowseController;
 
@@ -55,7 +56,7 @@ Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('ca
 // Refreshing stage 1 of the cart
 Route::get('/cart/refresh', [CartController::class, 'refreshCart'])->name('cart.refresh');
 
-Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show')->middleware(CheckStage::class);
 
 // Payment and delivery form, address form, and order summary
 Route::post('/cart/paymentDelivery', [CartController::class, 'submitPaymentAndDelivery'])->name('cart.paymentDelivery.submit');

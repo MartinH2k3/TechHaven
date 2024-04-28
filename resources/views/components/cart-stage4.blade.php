@@ -1,7 +1,7 @@
 @props(['cartItems', 'paymentMethod', 'deliveryMethod'])
 <!--Include the alert component.-->
 @include('components.alert')
-<div class="stage-content shopping-cart-container">
+<div class="stage-container shopping-cart-container">
     <form class="summary-form" action="{{ route('cart.summary.order.submit') }}" method="POST">
         @csrf
         <div class="stage4-header-row stage4-row">
@@ -43,7 +43,7 @@
             <h2 class="stage4-title">Spolu</h2>
             <span class="stage4-total">{{ $totalPrice }} €</span>
         </div>
-        <button type="submit" id="order-button">Objednať</button>
+        <button type="submit" class="submit-button">Objednať</button>
     </form>
 
 </div>

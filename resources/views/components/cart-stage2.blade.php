@@ -1,4 +1,4 @@
-<div class="stage-content shopping-cart-container">
+<div class="stage-container shopping-cart-container">
     <form class="payment-form" action="{{ route('cart.paymentDelivery.submit') }}" method="POST">
         @csrf
         <h2 class="stage2-header">Platba</h2>
@@ -21,6 +21,6 @@
             <input type="radio" name="delivery_method" value="DHL" id="stage2-dhl">
             <label for="stage2-dhl">DHL</label>
         </div>
-        <button type="submit" id="payment-delivery-button" >Uložiť</button>
+        <button type="submit" class="submit-button">Uložiť</button>
     </form>
 </div>

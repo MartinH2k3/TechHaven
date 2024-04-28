@@ -27,6 +27,7 @@ html {
 /* default classes */
 body {
     background-image: url('/storage/images/background_image.png');
+    background-size: cover;
     padding: 0;
     margin: 0;
 }

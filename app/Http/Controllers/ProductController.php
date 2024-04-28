@@ -137,7 +137,7 @@ class ProductController extends Controller
         // Delete the image record from the database
         $image->delete();
 
-        return back()->with('success', 'Obrázok bol odstránený.');
+        return back();
     }
 
     /**

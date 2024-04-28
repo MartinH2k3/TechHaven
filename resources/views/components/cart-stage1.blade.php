@@ -1,5 +1,4 @@
 @props(['cartItems'])
-
 <div class="stage-container shopping-cart-container">
     <div id="stage1-labels" class="stage1-row">
         <h2 class="stage1-title">Nákupný košík</h2>

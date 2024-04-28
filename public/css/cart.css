@@ -24,19 +24,23 @@ main {
     display: inline-block;
 }
 
-button#switch-to-next-stage {
-    align-self: flex-end;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    margin-right: calc(50% - 16.5rem);
-    padding: 0.6rem;
-    font-weight: bold;
-    cursor: pointer;
-    width: 12.5rem;
-    color:white;
+.cart-stage-container {
+    display: flex;
+    flex-direction: column;
 }
 
-button#switch-to-next-stage:hover {
+button.switch-to-next-stage {
+    padding: 0.6rem 1.6rem;
+    border: none;
+    background-color: var(--menu-color);
+    color: var(--text-color);
+    font-weight: bold;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+button.switch-to-next-stage:hover {
     background-color: var(--button-hover-color);
     color: white;
 }
@@ -100,6 +104,38 @@ button#switch-to-next-stage:hover {
     grid-column: 4;
 }
 
+.address-form {
+    /* padding: 0 2rem; */
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.address-form h1{
+    text-align: center;
+}
+
+.address-form input {
+    padding: 0.7rem;
+    margin: 0.3rem 0;
+    border: 1px solid var(--soft-border-color);
+    border-radius: 0.3rem;
+}
+
+.submit-button {
+    padding: 0.6rem;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: var(--button-color);
+    color: white;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .stage-container {
@@ -117,6 +153,10 @@ button#switch-to-next-stage:hover {
 
     .product-count-input, .stage1-remove {
         margin: 0 auto; /* Centering within their container */
+    }
+
+    .address-form{
+        padding: 0;
     }
 }
 
