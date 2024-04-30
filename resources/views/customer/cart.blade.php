@@ -8,6 +8,9 @@
 @include('components.alert')
 
 @section('content')
+    @php
+        $currentStage = session()->get('current_stage', 1);
+    @endphp
     <nav id="shopping-cart-nav" class="shopping-cart-container">
         <a href="{{ route('homepage') }}" class="cart-stage-ref"><i class="fas fa-home"></i> Home</a>
         <i class="fas fa-chevron-right"></i>
@@ -15,9 +18,9 @@
         <i class="fas fa-chevron-right"></i>
         <a href="{{ route('cart.show', ['stage' => '2']) }}" class="cart-stage-ref">Platba a doprava</a>
         <i class="fas fa-chevron-right"></i>
-        <a href="{{ route('cart.show', ['stage' => '3']) }}" class="cart-stage-ref">Dodacie údaje</a>
+        <a href="{{ route('cart.show', ['stage' => '3']) }}" class="cart-stage-ref {{ 3 > $currentStage ? 'disabled' : '' }}" >Dodacie údaje</a>
         <i class="fas fa-chevron-right"></i>
-        <a href="{{ route('cart.show', ['stage' => '4']) }}" class="cart-stage-ref">Zhrnutie</a>
+        <a href="{{ route('cart.show', ['stage' => '4']) }}" class="cart-stage-ref {{ 4 > $currentStage ? 'disabled' : '' }}" >Zhrnutie</a>
     </nav>
 
     {{-- Dynamically include the stage component based on the query parameter --}}

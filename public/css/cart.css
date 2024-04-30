@@ -24,6 +24,11 @@ main {
     display: inline-block;
 }
 
+.cart-stage-ref.disabled {
+    color: grey;
+    pointer-events: none;
+}
+
 .cart-stage-container {
     display: flex;
     flex-direction: column;
@@ -104,18 +109,18 @@ button.switch-to-next-stage:hover {
     grid-column: 4;
 }
 
-.address-form {
+.cart-form {
     /* padding: 0 2rem; */
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
 }
 
-.address-form h1{
+.cart-form h1{
     text-align: center;
 }
 
-.address-form input {
+.cart-form input {
     padding: 0.7rem;
     margin: 0.3rem 0;
     border: 1px solid var(--soft-border-color);
@@ -155,7 +160,7 @@ button.switch-to-next-stage:hover {
         margin: 0 auto; /* Centering within their container */
     }
 
-    .address-form{
+    .cart-form{
         padding: 0;
     }
 }

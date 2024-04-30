@@ -197,7 +197,7 @@ class CartController extends Controller
             session()->put('current_stage', 3);
         }
 
-        return back()->with('success', 'Platba a doprava bola uložená.');
+        return back();
     }
 
     /**
@@ -230,7 +230,7 @@ class CartController extends Controller
             session()->put('current_stage', 4);
         }
 
-        return back()->with('success', 'Adresa bola uložená.');
+        return back();
     }
 
     /**

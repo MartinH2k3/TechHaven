@@ -1,5 +1,5 @@
 <div class="stage-container shopping-cart-container">
-    <form class="payment-form" action="{{ route('cart.paymentDelivery.submit') }}" method="POST">
+    <form class="cart-form" action="{{ route('cart.paymentDelivery.submit') }}" method="POST">
         @csrf
         <h2 class="stage2-header">Platba</h2>
         <div class="payment-method">

@@ -1,5 +1,5 @@
 <div class="stage-container shopping-cart-container">
-    <form class="address-form" action="{{ route('cart.address.submit') }}" method="POST" >
+    <form class="cart-form" action="{{ route('cart.address.submit') }}" method="POST" >
         @csrf
         <h1>Dodacie údaje</h1>
         <label for="first_name">Meno:</label>
