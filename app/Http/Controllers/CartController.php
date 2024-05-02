@@ -19,6 +19,15 @@ use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
+    /**
+     * Add a product to the shopping cart.
+     *
+     * This method adds a product to the shopping cart. If the user is logged in, the product is added to the database.
+     * If the user is a guest, the product is added to the session. If the product is already in the cart, the product count is incremented.
+     * If parameter product_count provided, the product count is either set to this value or incremented by this value.
+     *
+     * @param  Request  $request  The request object, which should include 'product_id' and 'product_count' parameters.
+     */
     public function addToCart(Request $request): void
     {
         $productId = $request->input('product_id');
@@ -57,6 +66,16 @@ class CartController extends Controller
         }
     }
 
+    /**
+     * Update the quantity of a product in the shopping cart.
+     *
+     * This method updates the quantity of a product in the shopping cart.
+     * If the user is logged in, the product quantity is updated in the database.
+     * If the user is a guest, the product quantity is updated in the session.
+     *
+     * @param  Request  $request  The request object, which should include 'product_id' and 'product_count' parameters.
+     * @return JsonResponse  A JSON response with a message indicating that the quantity was updated.
+     */
     public function updateQuantity(Request $request)
     {
         $productId = $request->product_id;

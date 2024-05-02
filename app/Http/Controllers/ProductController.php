@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    // Other methods...
 
+    /**
+     * Store a product in the database
+     *
+     * Called from admin menu to create a new product and store its images with hashed names.
+     */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([

@@ -130,6 +130,7 @@
     </aside>
     <div class="browse-page-container">
         <section id="product-grid">
+            <!-- Display all products -->
             @foreach ($products as $product)
                 <figure class="grid-item">
                     <a href="{{ url('/product', $product->id) }}" class="anchor-for-product-preview-image">
@@ -151,6 +152,7 @@
             @endforeach
         </section>
 
+        <!-- Default laravel pagination -->
         {{ $products->onEachSide(1)->links('vendor.pagination.css-slider') }}
 
     </div>

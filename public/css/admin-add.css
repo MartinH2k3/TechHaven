@@ -46,7 +46,8 @@ main {
 .add-product-form h1{
     text-align: center;
 }
-.add-product-container button {
+
+#add-product-button {
     padding: 0.6rem;
     border: none;
     border-radius: 0.3rem;
@@ -57,7 +58,7 @@ main {
     margin: auto;
 }
 
-.add-product-container button:hover {
+#add-product-button:hover {
     background-color: var(--button-hover-color);
 }
 

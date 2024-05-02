@@ -18,7 +18,7 @@
         @endphp
         <div class="stage1-row">
             <h5 class="stage1-title">{{ $item->product->product_name }}</h5>
-            <span class="stage1-price">{{ $item->product->price }} €</span>
+            <span class="stage1-price">{{ number_format($item->product->price, 2) }} €</span>
             <div class="stage1-quantity-div">
                 <form class="stage1-quantity">
                     @csrf
@@ -31,13 +31,13 @@
                     <button type="submit" data-product-id="{{ $item->product_id }}"><i class="fas fa-trash-alt"></i></button>
                 </form>
             </div>
-            <span class="stage1-total">{{ $itemTotalPrice }} €</span>
+            <span class="stage1-total">{{ number_format($itemTotalPrice, 2) }} €</span>
         </div>
     @endforeach
 
     <div class="stage1-row shopping-cart-sum">
         <h5 class="stage1-title">Celková cena: </h5>
-        <span class="stage1-total">{{ $totalPrice }} €</span>
+        <span class="stage1-total">{{ number_format($totalPrice, 2) }} €</span>
     </div>
 </div>
 
