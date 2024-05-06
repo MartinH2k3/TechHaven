@@ -140,6 +140,58 @@ button.switch-to-next-stage:hover {
     background-color: var(--button-hover-color);
 }
 
+.summary-form {
+    padding: 2rem;
+    width: min(100vw, 50rem);
+    box-sizing: border-box;
+}
+.stage4-row{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--soft-border-color);
+    margin-top: 0.5rem;
+}
+
+.stage4-title {
+    flex: 70;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 0; /* So it can lay above other text for long titles */
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+h2.stage4-title{
+    text-overflow: unset;
+    overflow: unset;
+}
+
+h5.stage4-title {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.stage4-quantity {
+    flex: 15;
+}
+
+.stage4-total {
+    text-align: end;
+    flex: 15;
+}
+
+.stage4-last-entry{
+    border-bottom: none;
+}
+
+.order-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -163,6 +215,16 @@ button.switch-to-next-stage:hover {
     .cart-form{
         padding: 0;
     }
+
+    .stage4-title {
+        flex: 50;
+    }
+    .stage4-quantity {
+        flex: 15;
+    }
+    .stage4-total {
+        flex: 35;
+    }
 }
 
 
@@ -181,6 +243,15 @@ button.switch-to-next-stage:hover {
 
     button#switch-to-next-stage {
         margin-right: 0;
+    }
+    .stage4-title {
+        flex: 40;
+    }
+    .stage4-quantity {
+        flex: 20;
+    }
+    .stage4-total {
+        flex: 40;
     }
 }
 
