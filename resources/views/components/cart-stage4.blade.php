@@ -43,7 +43,9 @@
             <h2 class="stage4-title">Spolu</h2>
             <span class="stage4-total">{{ $totalPrice }} €</span>
         </div>
-        <button type="submit" class="submit-button">Objednať</button>
+        <div class="order-button-container">
+            <button type="submit" class="submit-button">Objednať</button>
+        </div>
     </form>
 
 </div>
